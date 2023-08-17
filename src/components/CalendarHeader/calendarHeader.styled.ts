@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
+    margin-bottom: 15px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,12 +26,9 @@ export const StyledSelect = styled.select`
     cursor: pointer;
 
     appearance: none;
-    text-indent: 1px;
-    text-overflow: "";
 `;
 
 export const StyledSelectContainer = styled.div`
     display: flex;
     align-items: center;
-    gap: 20px;
 `;
