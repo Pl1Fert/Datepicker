@@ -85,6 +85,8 @@
         ],
         "react/prefer-stateless-function": "off",
         "jsx-a11y/label-has-associated-control": "off",
-        "react/prop-types": "off"
+        "jsx-a11y/control-has-associated-label": "off",
+        "react/prop-types": "off",
+        "import/no-extraneous-dependencies": "off"
     }
 }
