@@ -62,7 +62,10 @@
     "scripts": {
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
-        "build-lib": "rollup -c"
+        "build-lib": "rollup -c",
+        "lint": "eslint \"src/**/*.{ts,tsx}\"",
+        "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
+        "prepare": "husky install"
     },
     "resolutions": {
         "jackspeak": "2.1.1",

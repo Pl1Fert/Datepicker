@@ -31,4 +31,5 @@ export const StyledSelect = styled.select`
 export const StyledSelectContainer = styled.div`
     display: flex;
     align-items: center;
+    gap: 10px;
 `;

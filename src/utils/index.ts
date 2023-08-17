@@ -1,3 +1,5 @@
+import { SHORT_DAY_NAMES, StartDay } from "@/constants";
+
 export const getNumberOfDaysInMonth = (year: number, month: number): number =>
     new Date(year, month + 1, 0).getDate();
 
@@ -11,8 +13,14 @@ export const areEqualDates = (a: Date, b: Date): boolean => {
     );
 };
 
-export const getStartDayOfMonth = (year: number, month: number): number => {
-    const day: number = new Date(year, month, 1).getDay() - 1;
+export const getStartDayOfMonth = (year: number, month: number, startDay: StartDay): number => {
+    let day: number = new Date(year, month, 1).getDay();
+
+    if (startDay === StartDay.Sunday) {
+        return day;
+    }
+
+    day -= 1;
 
     if (day === -1) {
         return 6;
@@ -21,10 +29,24 @@ export const getStartDayOfMonth = (year: number, month: number): number => {
     return day;
 };
 
-export const getMonthData = (year: number, month: number): (number | undefined)[][] => {
+export const getWeekDaysNames = (startDay: StartDay): string[] => {
+    if (startDay === StartDay.Monday) {
+        return SHORT_DAY_NAMES;
+    }
+    const array = [...SHORT_DAY_NAMES];
+    array.unshift(array.pop() as string);
+
+    return array;
+};
+
+export const getMonthData = (
+    year: number,
+    month: number,
+    startDay: StartDay
+): (number | undefined)[][] => {
     const result: (number | undefined)[][] = [];
     const daysInMonth = getNumberOfDaysInMonth(year, month);
-    const monthStartsOn = getStartDayOfMonth(year, month);
+    const monthStartsOn = getStartDayOfMonth(year, month, startDay);
     let day: number = 1;
 
     for (let i = 0; i < (daysInMonth + monthStartsOn) / 7; i += 1) {
