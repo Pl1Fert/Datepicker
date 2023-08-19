@@ -9,4 +9,5 @@ export interface IProps {
     startDay: StartDay;
     setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>;
     shownDate: IDate;
+    color?: string;
 }

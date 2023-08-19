@@ -12,6 +12,7 @@ export const CalendarBody: FC<IProps> = ({
     currentDate,
     setSelectedDate,
     shownDate,
+    color,
 }) => {
     const handleDayClick = (e: SyntheticEvent): void => {
         const target = e.target as HTMLElement;
@@ -36,6 +37,7 @@ export const CalendarBody: FC<IProps> = ({
                         day ? (
                             <StyledDayCell
                                 key={day}
+                                color={color}
                                 today={areEqualDates({ ...shownDate, day }, currentDate)}
                                 selected={areEqualDates({ ...shownDate, day }, selectedDate)}
                                 onClick={handleDayClick}>

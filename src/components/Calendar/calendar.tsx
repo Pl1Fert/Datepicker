@@ -43,6 +43,7 @@ export const Calendar: FC<IProps> = ({ startDay = StartDay.Monday }) => {
                     currentDate={currentDate}
                     setSelectedDate={setSelectedDate}
                     shownDate={shownDate}
+                    color={color}
                 />
             </StyledMain>
         </>

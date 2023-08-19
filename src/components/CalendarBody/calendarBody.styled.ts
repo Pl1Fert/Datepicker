@@ -15,15 +15,16 @@ export const StyledDayName = styled.p`
     cursor: default;
 `;
 
-export const StyledDayCell = styled.p<{ today?: boolean; selected?: boolean }>`
+export const StyledDayCell = styled.p<{ today?: boolean; selected?: boolean; color?: string }>`
     padding: 8px 5px;
-    border: ${({ selected }) => (selected ? "1px solid #2F80ED" : "1px solid transparent")};
+    border: 1px solid;
 
     font-weight: 500;
     text-align: center;
 
     border-radius: 8px;
-    background-color: ${({ today }) => (today ? "#2F80ED" : "transparent")};
+    background-color: ${({ today, color }) => (today ? color || "#2F80ED" : "transparent")};
+    border-color: ${({ selected, color }) => (selected ? color || "#2F80ED" : "transparent")};
     color: ${({ today }) => (today ? "white" : "black")};
 
     cursor: pointer;

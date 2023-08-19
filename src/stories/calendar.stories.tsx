@@ -12,6 +12,7 @@ const meta: Meta<typeof Calendar> = {
             options: [StartDay.Monday, StartDay.Sunday],
             control: { type: "radio" },
         },
+        color: { control: "color" },
     },
 };
 export default meta;
