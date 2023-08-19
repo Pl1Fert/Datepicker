@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import { CalendarBody, CalendarHeader } from "@/components";
 import { StartDay } from "@/constants";
-import { IDate } from "@/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 import { GlobalStyles } from "@/styles/global";
 
 import { IProps } from "./calendar.interfaces";
@@ -15,26 +15,34 @@ const currentDate: IDate = {
 };
 
 export const Calendar: FC<IProps> = ({ startDay = StartDay.Monday }) => {
-    const initialState: IDate = {
+    const initialSelectedDate: ISelectedDate = {
+        month: undefined,
+        year: undefined,
+        day: undefined,
+    };
+
+    const initialShownDate: IDate = {
         ...currentDate,
     };
 
-    const [selectedDate, setSelectedDate] = useState<IDate>(initialState);
+    const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialSelectedDate);
+    const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
 
     return (
         <>
             <GlobalStyles />
             <StyledMain>
                 <CalendarHeader
-                    selectedDate={selectedDate}
-                    setSelectedDate={setSelectedDate}
                     currentYear={currentDate.year}
+                    shownDate={shownDate}
+                    setShownDate={setShownDate}
                 />
                 <CalendarBody
                     selectedDate={selectedDate}
                     startDay={startDay}
                     currentDate={currentDate}
                     setSelectedDate={setSelectedDate}
+                    shownDate={shownDate}
                 />
             </StyledMain>
         </>

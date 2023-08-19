@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { StartDay } from "@/constants";
-import { IDate } from "@/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 export interface IProps {
-    selectedDate: IDate;
+    selectedDate: ISelectedDate;
     currentDate: IDate;
     startDay: StartDay;
-    setSelectedDate: Dispatch<SetStateAction<IDate>>;
+    setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>;
+    shownDate: IDate;
 }

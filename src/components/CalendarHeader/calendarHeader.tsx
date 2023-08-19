@@ -15,56 +15,65 @@ import {
 } from "./calendarHeader.styled";
 
 export const CalendarHeader: FC<IProps> = ({
-    selectedDate: { month, year },
-    setSelectedDate,
+    shownDate: { month, year },
     currentYear,
+    setShownDate,
 }) => {
     const handleChange = (e: SyntheticEvent): void => {
         const target = e.target as HTMLInputElement;
 
         if (target.name === "currentYear") {
-            setSelectedDate(
-                (prevState) =>
-                    ({
-                        ...prevState,
-                        year: parseInt(target.value, 10),
-                    }) as IDate
+            setShownDate(
+                (prevState: IDate): IDate => ({
+                    ...prevState,
+                    year: parseInt(target.value, 10),
+                })
             );
         } else {
-            setSelectedDate((prevState) => ({
-                ...prevState,
-                month: parseInt(target.value, 10),
-            }));
+            setShownDate(
+                (prevState: IDate): IDate => ({
+                    ...prevState,
+                    month: parseInt(target.value, 10),
+                })
+            );
         }
     };
 
     const handleNextMonthClick = (): void => {
         if (month < 11) {
-            setSelectedDate((prevState) => ({
-                ...prevState,
-                month: month + 1,
-            }));
+            setShownDate(
+                (prevState: IDate): IDate => ({
+                    ...prevState,
+                    month: month + 1,
+                })
+            );
         } else {
-            setSelectedDate((prevState) => ({
-                ...prevState,
-                month: 0,
-                year: year + 1,
-            }));
+            setShownDate(
+                (prevState: IDate): IDate => ({
+                    ...prevState,
+                    month: 0,
+                    year: year + 1,
+                })
+            );
         }
     };
 
     const handlePrevMonthClick = (): void => {
         if (month > 0) {
-            setSelectedDate((prevState) => ({
-                ...prevState,
-                month: month - 1,
-            }));
+            setShownDate(
+                (prevState: IDate): IDate => ({
+                    ...prevState,
+                    month: month - 1,
+                })
+            );
         } else {
-            setSelectedDate((prevState) => ({
-                ...prevState,
-                month: 11,
-                year: year - 1,
-            }));
+            setShownDate(
+                (prevState: IDate): IDate => ({
+                    ...prevState,
+                    month: 11,
+                    year: year - 1,
+                })
+            );
         }
     };
 

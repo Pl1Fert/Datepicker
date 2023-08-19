@@ -1,10 +1,10 @@
 import { SHORT_DAY_NAMES, StartDay } from "@/constants";
-import { IDate } from "@/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 export const getNumberOfDaysInMonth = (year: number, month: number): number =>
     new Date(year, month + 1, 0).getDate();
 
-export const areEqualDates = (a: IDate, b: IDate): boolean =>
+export const areEqualDates = (a: IDate, b: IDate | ISelectedDate): boolean =>
     a.year === b.year && a.month === b.month && a.day === b.day;
 
 export const getStartDayOfMonth = (year: number, month: number, startDay: StartDay): number => {

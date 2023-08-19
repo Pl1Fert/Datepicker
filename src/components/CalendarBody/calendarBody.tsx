@@ -1,25 +1,26 @@
 import { FC, SyntheticEvent } from "react";
 
-import { IDate } from "@/interfaces";
+import { ISelectedDate } from "@/interfaces";
 import { areEqualDates, getMonthData, getWeekDaysNames } from "@/utils";
 
 import { IProps } from "./calendarBody.interfaces";
 import { SevenColGrid, StyledDayCell, StyledDayName } from "./calendarBody.styled";
 
 export const CalendarBody: FC<IProps> = ({
-    selectedDate: { month, year },
     selectedDate,
     startDay,
     currentDate,
     setSelectedDate,
+    shownDate,
 }) => {
     const handleDayClick = (e: SyntheticEvent): void => {
         const target = e.target as HTMLElement;
 
-        setSelectedDate((prevState: IDate) => ({
-            ...prevState,
+        setSelectedDate({
+            year: shownDate.year,
+            month: shownDate.month,
             day: parseInt(target.innerText, 10),
-        }));
+        } as ISelectedDate);
     };
 
     return (
@@ -30,13 +31,13 @@ export const CalendarBody: FC<IProps> = ({
                 ))}
             </SevenColGrid>
             <SevenColGrid>
-                {getMonthData(year, month, startDay).map((week) =>
+                {getMonthData(shownDate.year, shownDate.month, startDay).map((week) =>
                     week.map((day) =>
                         day ? (
                             <StyledDayCell
                                 key={day}
-                                today={areEqualDates({ ...selectedDate, day }, currentDate)}
-                                selected={areEqualDates({ ...selectedDate, day }, selectedDate)}
+                                today={areEqualDates({ ...shownDate, day }, currentDate)}
+                                selected={areEqualDates({ ...shownDate, day }, selectedDate)}
                                 onClick={handleDayClick}>
                                 {day}
                             </StyledDayCell>
