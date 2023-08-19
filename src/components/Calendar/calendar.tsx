@@ -33,7 +33,7 @@ export const Calendar: FC<IProps> = ({ startDay = StartDay.Monday }) => {
             <GlobalStyles />
             <StyledMain>
                 <CalendarHeader
-                    currentYear={currentDate.year}
+                    currentDate={currentDate}
                     shownDate={shownDate}
                     setShownDate={setShownDate}
                 />

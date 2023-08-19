@@ -4,20 +4,24 @@ import next from "@/assets/icons/Next.svg";
 import prev from "@/assets/icons/Prev.svg";
 import { MONTH_NAMES } from "@/constants";
 import { IDate } from "@/interfaces";
-import { getYearNumbers } from "@/utils";
+import { compareDates, getYearNumbers } from "@/utils";
 
 import { IProps } from "./calendarHeader.interfaces";
 import {
+    Row,
     StyledButton,
     StyledHeader,
     StyledSelect,
     StyledSelectContainer,
+    Title,
 } from "./calendarHeader.styled";
 
 export const CalendarHeader: FC<IProps> = ({
     shownDate: { month, year },
-    currentYear,
+    currentDate,
     setShownDate,
+    maxDate,
+    minDate,
 }) => {
     const handleChange = (e: SyntheticEvent): void => {
         const target = e.target as HTMLInputElement;
@@ -77,30 +81,43 @@ export const CalendarHeader: FC<IProps> = ({
         }
     };
 
+    const handleTodayClick = (): void => {
+        setShownDate({ ...currentDate });
+    };
+
     return (
         <StyledHeader>
-            <StyledButton type="button" onClick={handlePrevMonthClick}>
-                <img src={prev} alt="prev" />
-            </StyledButton>
-            <StyledSelectContainer>
-                <StyledSelect name="currentMonth" value={month} onChange={handleChange}>
-                    {MONTH_NAMES.map((monthItem, index) => (
-                        <option key={monthItem} value={index}>
-                            {monthItem}
-                        </option>
-                    ))}
-                </StyledSelect>
-                <StyledSelect name="currentYear" value={year} onChange={handleChange}>
-                    {getYearNumbers(currentYear).map((yearItem) => (
-                        <option key={yearItem} value={yearItem}>
-                            {yearItem}
-                        </option>
-                    ))}
-                </StyledSelect>
-            </StyledSelectContainer>
-            <StyledButton type="button" onClick={handleNextMonthClick}>
-                <img src={next} alt="next" />
-            </StyledButton>
+            <Title onClick={handleTodayClick}>{currentDate.day}</Title>
+            <Row>
+                <StyledButton
+                    type="button"
+                    onClick={handlePrevMonthClick}
+                    disabled={compareDates({ year, month }, minDate)}>
+                    <img src={prev} alt="prev" />
+                </StyledButton>
+                <StyledSelectContainer>
+                    <StyledSelect name="currentMonth" value={month} onChange={handleChange}>
+                        {MONTH_NAMES.map((monthItem, index) => (
+                            <option key={monthItem} value={index}>
+                                {monthItem}
+                            </option>
+                        ))}
+                    </StyledSelect>
+                    <StyledSelect name="currentYear" value={year} onChange={handleChange}>
+                        {getYearNumbers(currentDate.year).map((yearItem) => (
+                            <option key={yearItem} value={yearItem}>
+                                {yearItem}
+                            </option>
+                        ))}
+                    </StyledSelect>
+                </StyledSelectContainer>
+                <StyledButton
+                    type="button"
+                    onClick={handleNextMonthClick}
+                    disabled={compareDates({ year, month }, maxDate)}>
+                    <img src={next} alt="next" />
+                </StyledButton>
+            </Row>
         </StyledHeader>
     );
 };
