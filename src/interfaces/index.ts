@@ -9,3 +9,8 @@ export interface ISelectedDate {
     year: number | undefined;
     day: number | undefined;
 }
+
+export interface IMaxMinDate {
+    month: number;
+    year: number;
+}

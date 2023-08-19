@@ -14,7 +14,7 @@ const currentDate: IDate = {
     day: new Date().getDate(),
 };
 
-export const Calendar: FC<IProps> = ({ startDay = StartDay.Monday }) => {
+export const Calendar: FC<IProps> = ({ startDay = StartDay.Monday, maxDate, minDate, color }) => {
     const initialSelectedDate: ISelectedDate = {
         month: undefined,
         year: undefined,
@@ -36,6 +36,8 @@ export const Calendar: FC<IProps> = ({ startDay = StartDay.Monday }) => {
                     currentDate={currentDate}
                     shownDate={shownDate}
                     setShownDate={setShownDate}
+                    maxDate={maxDate}
+                    minDate={minDate}
                 />
                 <CalendarBody
                     selectedDate={selectedDate}

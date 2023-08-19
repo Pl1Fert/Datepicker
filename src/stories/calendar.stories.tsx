@@ -22,5 +22,13 @@ type Story = StoryObj<typeof Calendar>;
 export const Default: Story = {
     args: {
         startDay: StartDay.Monday,
+        maxDate: {
+            year: 2024,
+            month: 1,
+        },
+        minDate: {
+            year: 2023,
+            month: 1,
+        },
     },
 };

@@ -1,5 +1,5 @@
 import { SHORT_DAY_NAMES, StartDay } from "@/constants";
-import { IDate, ISelectedDate } from "@/interfaces";
+import { IDate, IMaxMinDate, ISelectedDate } from "@/interfaces";
 
 export const getNumberOfDaysInMonth = (year: number, month: number): number =>
     new Date(year, month + 1, 0).getDate();
@@ -68,4 +68,10 @@ export const getMonthData = (
     }
 
     return result;
+};
+
+export const compareDates = (date1?: IMaxMinDate, date2?: IMaxMinDate): boolean => {
+    if (!date1 || !date2) return false;
+
+    return date1.year === date2.year && date1.month === date2.month;
 };
