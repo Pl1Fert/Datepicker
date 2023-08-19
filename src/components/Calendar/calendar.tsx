@@ -8,20 +8,34 @@ import { GlobalStyles } from "@/styles/global";
 import { IProps } from "./calendar.interfaces";
 import { StyledMain } from "./calendar.styled";
 
+const currentDate: IDate = {
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
+    day: new Date().getDate(),
+};
+
 export const Calendar: FC<IProps> = ({ startDay = StartDay.Monday }) => {
     const initialState: IDate = {
-        currentMonth: new Date().getMonth(),
-        currentYear: new Date().getFullYear(),
+        ...currentDate,
     };
 
-    const [currentDate, setCurrentDate] = useState<IDate>(initialState);
+    const [selectedDate, setSelectedDate] = useState<IDate>(initialState);
 
     return (
         <>
             <GlobalStyles />
             <StyledMain>
-                <CalendarHeader currentDate={currentDate} setCurrentDate={setCurrentDate} />
-                <CalendarBody currentDate={currentDate} startDay={startDay} />
+                <CalendarHeader
+                    selectedDate={selectedDate}
+                    setSelectedDate={setSelectedDate}
+                    currentYear={currentDate.year}
+                />
+                <CalendarBody
+                    selectedDate={selectedDate}
+                    startDay={startDay}
+                    currentDate={currentDate}
+                    setSelectedDate={setSelectedDate}
+                />
             </StyledMain>
         </>
     );

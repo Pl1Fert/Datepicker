@@ -30,5 +30,6 @@ export default [
             terser(),
             svg(),
         ],
+        external: ["styled-components"],
     },
 ];

@@ -1,4 +1,5 @@
 export interface IDate {
-    currentMonth: number;
-    currentYear: number;
+    month: number;
+    year: number;
+    day: number;
 }
