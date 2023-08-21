@@ -87,6 +87,7 @@
         "jsx-a11y/label-has-associated-control": "off",
         "jsx-a11y/control-has-associated-label": "off",
         "react/prop-types": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "no-nested-ternary": "off"
     }
 }

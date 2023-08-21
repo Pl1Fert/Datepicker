@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent } from "react";
 
 import { ISelectedDate } from "@/interfaces";
-import { areEqualDates, getMonthData, getWeekDaysNames } from "@/utils";
+import { areEqualDates, getMonthData, getWeekDaysNames, isHoliday, isWeekend } from "@/utils";
 
 import { IProps } from "./calendarBody.interfaces";
 import { SevenColGrid, StyledDayCell, StyledDayName } from "./calendarBody.styled";
@@ -13,6 +13,9 @@ export const CalendarBody: FC<IProps> = ({
     setSelectedDate,
     shownDate,
     color,
+    highlightWeekends,
+    highlightHolidays,
+    holidays,
 }) => {
     const handleDayClick = (e: SyntheticEvent): void => {
         const target = e.target as HTMLElement;
@@ -33,13 +36,18 @@ export const CalendarBody: FC<IProps> = ({
             </SevenColGrid>
             <SevenColGrid>
                 {getMonthData(shownDate.year, shownDate.month, startDay).map((week) =>
-                    week.map((day) =>
+                    week.map((day, index) =>
                         day ? (
                             <StyledDayCell
                                 key={day}
                                 color={color}
-                                today={areEqualDates({ ...shownDate, day }, currentDate)}
+                                $today={areEqualDates({ ...shownDate, day }, currentDate)}
                                 selected={areEqualDates({ ...shownDate, day }, selectedDate)}
+                                $highlightWeekends={highlightWeekends && isWeekend(index, startDay)}
+                                $highlightHolidays={
+                                    highlightHolidays &&
+                                    isHoliday({ ...shownDate, day }, holidays[shownDate.year])
+                                }
                                 onClick={handleDayClick}>
                                 {day}
                             </StyledDayCell>

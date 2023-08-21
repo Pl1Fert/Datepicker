@@ -13,6 +13,14 @@ const meta: Meta<typeof Calendar> = {
             control: { type: "radio" },
         },
         color: { control: "color" },
+        highlightWeekends: {
+            options: [false, true],
+            control: { type: "radio" },
+        },
+        highlightHolidays: {
+            options: [false, true],
+            control: { type: "radio" },
+        },
     },
 };
 export default meta;
@@ -30,5 +38,7 @@ export const Default: Story = {
             year: 2023,
             month: 1,
         },
+        highlightWeekends: true,
+        highlightHolidays: true,
     },
 };

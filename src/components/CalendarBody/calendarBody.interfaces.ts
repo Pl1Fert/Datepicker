@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { StartDay } from "@/constants";
-import { IDate, ISelectedDate } from "@/interfaces";
+import { IDate, IHolidaysDates, ISelectedDate } from "@/interfaces";
 
 export interface IProps {
     selectedDate: ISelectedDate;
@@ -10,4 +10,7 @@ export interface IProps {
     setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>;
     shownDate: IDate;
     color?: string;
+    highlightWeekends: boolean;
+    highlightHolidays: boolean;
+    holidays: IHolidaysDates;
 }

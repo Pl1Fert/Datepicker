@@ -6,4 +6,6 @@ export interface IProps {
     maxDate?: IMaxMinDate;
     minDate?: IMaxMinDate;
     color?: string;
+    highlightWeekends?: boolean;
+    highlightHolidays?: boolean;
 }
