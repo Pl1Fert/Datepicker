@@ -16,4 +16,8 @@ export const StyledInput = styled.input`
 
     font: inherit;
     outline: none;
+
+    &:invalid {
+        border-color: red;
+    }
 `;

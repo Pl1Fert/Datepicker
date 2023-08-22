@@ -167,3 +167,27 @@ export const isHoliday = (date: IDate, holidays: string[] | undefined): boolean 
 
     return holidays.includes(dateString);
 };
+
+export const isValidDate = (date: IDate | undefined): boolean => {
+    if (!date) {
+        return false;
+    }
+
+    const newDate = new Date(date.year, date.month - 1, date.day);
+
+    return Boolean(+newDate) && newDate.getDate() === date.day;
+};
+
+export const formatStringToDate = (dateString: string): IDate | undefined => {
+    const dateArray = dateString.split("-");
+
+    if (dateArray.length !== 3) {
+        return undefined;
+    }
+
+    return {
+        year: parseInt(dateArray.at(0) as string, 10),
+        month: parseInt(dateArray.at(1) as string, 10) - 1,
+        day: parseInt(dateArray.at(2) as string, 10),
+    };
+};
