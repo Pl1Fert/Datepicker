@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import { FC, KeyboardEvent, useEffect, useState } from "react";
 
-import { CalendarBody, CalendarHeader } from "@/components";
+import { CalendarBody, CalendarHeader, TodoList } from "@/components";
 import { StartDay } from "@/constants";
-import { IDate, IHolidaysDates, ISelectedDate } from "@/interfaces";
+import { IDate, IHolidaysDates, ISelectedDate, ITodo } from "@/interfaces";
 import { GlobalStyles } from "@/styles/global";
-import { formatHolidays, getHolidays } from "@/utils";
+import { formatDate, formatHolidays, getHolidays } from "@/utils";
 
 import { IProps } from "./calendar.interfaces";
-import { StyledMain } from "./calendar.styled";
+import { StyledInput, StyledMain } from "./calendar.styled";
 
 const currentDate: IDate = {
     month: new Date().getMonth(),
@@ -36,6 +36,8 @@ export const Calendar: FC<IProps> = ({
     const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialSelectedDate);
     const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
     const [holidays, setholidays] = useState<IHolidaysDates>({});
+    const [todoList, setTodoList] = useState<ITodo[]>([]);
+    const [todo, setTodo] = useState<string>("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,6 +48,38 @@ export const Calendar: FC<IProps> = ({
 
         fetchData().catch(() => {});
     }, []);
+
+    useEffect(() => {
+        const value = localStorage.getItem("todoList");
+        if (typeof value === "string") {
+            const storedTodoList: ITodo[] = JSON.parse(value) as ITodo[];
+            setTodoList(storedTodoList);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+    }, [todoList]);
+
+    const handleAddNewTodo = (e: KeyboardEvent<HTMLInputElement>): void => {
+        if (e.key !== "Enter") {
+            return;
+        }
+        if (!todo.trim()) {
+            return;
+        }
+
+        setTodoList((prevTodoList) => [
+            ...prevTodoList,
+            { id: Date.now(), date: formatDate(selectedDate), content: todo },
+        ]);
+        setTodo("");
+    };
+
+    const handleDeleteTodo = (id: number) => {
+        const newTodoList = todoList.filter((item) => item.id !== id);
+        setTodoList(newTodoList);
+    };
 
     return (
         <>
@@ -68,6 +102,18 @@ export const Calendar: FC<IProps> = ({
                     highlightHolidays={highlightHolidays}
                     highlightWeekends={highlightWeekends}
                     holidays={holidays}
+                />
+                <StyledInput
+                    type="text"
+                    value={todo}
+                    onChange={(e) => setTodo(e.target.value)}
+                    placeholder="Create a new todo..."
+                    onKeyDown={handleAddNewTodo}
+                />
+                <TodoList
+                    todoList={todoList}
+                    formattedSelectedDate={formatDate(selectedDate)}
+                    handleDeleteTodo={handleDeleteTodo}
                 />
             </StyledMain>
         </>

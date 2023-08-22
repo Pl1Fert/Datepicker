@@ -68,3 +68,9 @@ export interface IHolidaysDates {
 export interface HttpResponse<T> extends Response {
     parsedBody?: T;
 }
+
+export interface ITodo {
+    id: number;
+    content: string;
+    date: string;
+}
