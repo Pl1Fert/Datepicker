@@ -1,9 +1,9 @@
 import { memo, useState } from "react";
 
 import { Calendar } from "@/components";
-import { StartDay } from "@/constants";
+import { CURRENT_DATE, StartDay } from "@/constants";
 import { withMainLogic, withTodoListLogic } from "@/hocs";
-import { ISelectedDate } from "@/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 import { IProps } from "./todoCalendar.interfaces";
 
@@ -22,13 +22,19 @@ export const TodoCalendar = memo<IProps>(
             day: undefined,
         };
 
+        const initialShownDate: IDate = {
+            ...CURRENT_DATE,
+        };
+
+        const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialSelectedDate);
 
-        const CalendarWithMainLogic = withMainLogic(Calendar);
+        const CalendarWithMainLogic = withMainLogic(Calendar, shownDate, setShownDate);
         const CalendarWithTodoList = withTodoListLogic(
             CalendarWithMainLogic,
             selectedDate,
-            setSelectedDate
+            setSelectedDate,
+            shownDate
         );
 
         return (

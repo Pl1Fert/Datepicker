@@ -1,10 +1,21 @@
-import { ComponentType, SyntheticEvent, useEffect, useState } from "react";
+import {
+    ComponentType,
+    Dispatch,
+    SetStateAction,
+    SyntheticEvent,
+    useEffect,
+    useState,
+} from "react";
 
 import { CURRENT_DATE } from "@/constants";
 import { IDate, IHolidaysDates } from "@/interfaces";
 import { formatHolidays, getHolidays } from "@/utils";
 
-export function withMainLogic<T>(Component: ComponentType<T>) {
+export function withMainLogic<T>(
+    Component: ComponentType<T>,
+    shownDate: IDate,
+    setShownDate: Dispatch<SetStateAction<IDate>>
+) {
     return (
         hocProps: Omit<
             T,
@@ -16,11 +27,6 @@ export function withMainLogic<T>(Component: ComponentType<T>) {
             | "holidays"
         >
     ) => {
-        const initialShownDate: IDate = {
-            ...CURRENT_DATE,
-        };
-
-        const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [holidays, setholidays] = useState<IHolidaysDates>({});
 
         useEffect(() => {

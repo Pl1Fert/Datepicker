@@ -1,10 +1,8 @@
-import { FC, KeyboardEvent, SyntheticEvent, useState } from "react";
+import { FC } from "react";
 
-import { CalendarBody, CalendarHeader, Picker } from "@/components";
+import { CalendarBody, CalendarHeader } from "@/components";
 import { StartDay } from "@/constants";
-import { IDate, ISelectedDate } from "@/interfaces";
 import { GlobalStyles } from "@/styles/global";
-import { formatDate, formatStringToDate, isValidDate } from "@/utils";
 
 import { IProps } from "./calendar.interfaces";
 import { StyledMain } from "./calendar.styled";
@@ -16,7 +14,6 @@ export const Calendar: FC<IProps> = ({
     color,
     highlightHolidays = false,
     highlightWeekends = false,
-    setSelectedDate,
     selectedDate,
     handleChange,
     handleNextMonthClick,
@@ -25,10 +22,13 @@ export const Calendar: FC<IProps> = ({
     shownDate,
     holidays,
     renderTodoList,
+    handleDayClick,
+    renderPicker,
 }) => (
     <>
         <GlobalStyles />
         <StyledMain>
+            {renderPicker && renderPicker()}
             <CalendarHeader
                 shownDate={shownDate}
                 maxDate={maxDate}

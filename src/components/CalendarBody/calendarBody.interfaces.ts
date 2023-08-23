@@ -11,5 +11,5 @@ export interface IProps {
     highlightWeekends: boolean;
     highlightHolidays: boolean;
     holidays: IHolidaysDates;
-    handleDayClick?: (e: SyntheticEvent) => void;
+    handleDayClick: (e: SyntheticEvent) => void;
 }

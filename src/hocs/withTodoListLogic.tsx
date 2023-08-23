@@ -9,15 +9,18 @@ import {
 } from "react";
 
 import { TodoListContainer } from "@/components";
-import { ISelectedDate, ITodo } from "@/interfaces";
+import { IDate, ISelectedDate, ITodo } from "@/interfaces";
 import { formatDate } from "@/utils";
 
 export function withTodoListLogic<T>(
     Component: ComponentType<T>,
     selectedDate: ISelectedDate,
-    setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>
+    setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>,
+    shownDate: IDate
 ) {
-    return (hocProps: Omit<T, "selectedDate" | "setSelectedDate">) => {
+    return (
+        hocProps: Omit<T, "selectedDate" | "setSelectedDate" | "shownDate" | "handleDayClick">
+    ) => {
         const [todoList, setTodoList] = useState<ITodo[]>([]);
         const [todo, setTodo] = useState<string>("");
 
@@ -59,6 +62,16 @@ export function withTodoListLogic<T>(
             setTodo(target.value);
         };
 
+        const handleDayClick = (e: SyntheticEvent): void => {
+            const target = e.target as HTMLElement;
+
+            setSelectedDate({
+                year: shownDate.year,
+                month: shownDate.month,
+                day: parseInt(target.innerText, 10),
+            } as ISelectedDate);
+        };
+
         const renderTodoList = () => (
             <TodoListContainer
                 todo={todo}
@@ -76,6 +89,7 @@ export function withTodoListLogic<T>(
                 renderTodoList={renderTodoList}
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
+                handleDayClick={handleDayClick}
             />
         );
     };
