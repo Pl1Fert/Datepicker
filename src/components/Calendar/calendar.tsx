@@ -1,19 +1,13 @@
 import { FC, KeyboardEvent, SyntheticEvent, useEffect, useState } from "react";
 
 import { CalendarBody, CalendarHeader, Picker, TodoList } from "@/components";
-import { StartDay } from "@/constants";
+import { CURRENT_DATE, StartDay } from "@/constants";
 import { IDate, IHolidaysDates, ISelectedDate, ITodo } from "@/interfaces";
 import { GlobalStyles } from "@/styles/global";
 import { formatDate, formatHolidays, formatStringToDate, getHolidays, isValidDate } from "@/utils";
 
 import { IProps } from "./calendar.interfaces";
 import { StyledInput, StyledMain } from "./calendar.styled";
-
-const currentDate: IDate = {
-    month: new Date().getMonth(),
-    year: new Date().getFullYear(),
-    day: new Date().getDate(),
-};
 
 export const Calendar: FC<IProps> = ({
     startDay = StartDay.Monday,
@@ -30,7 +24,7 @@ export const Calendar: FC<IProps> = ({
     };
 
     const initialShownDate: IDate = {
-        ...currentDate,
+        ...CURRENT_DATE,
     };
 
     const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialSelectedDate);
@@ -187,7 +181,7 @@ export const Calendar: FC<IProps> = ({
     };
 
     const handleTodayClick = (): void => {
-        setShownDate({ ...currentDate });
+        setShownDate({ ...CURRENT_DATE });
     };
 
     return (
@@ -201,7 +195,6 @@ export const Calendar: FC<IProps> = ({
                     onClick={handleClearDate}
                 />
                 <CalendarHeader
-                    currentDate={currentDate}
                     shownDate={shownDate}
                     maxDate={maxDate}
                     minDate={minDate}
@@ -213,7 +206,6 @@ export const Calendar: FC<IProps> = ({
                 <CalendarBody
                     selectedDate={selectedDate}
                     startDay={startDay}
-                    currentDate={currentDate}
                     shownDate={shownDate}
                     color={color}
                     highlightHolidays={highlightHolidays}

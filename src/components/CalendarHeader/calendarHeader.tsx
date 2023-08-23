@@ -2,7 +2,7 @@ import { memo } from "react";
 
 import next from "@/assets/icons/Next.svg";
 import prev from "@/assets/icons/Prev.svg";
-import { MONTH_NAMES } from "@/constants";
+import { CURRENT_DATE, MONTH_NAMES } from "@/constants";
 import { compareDates, getYearNumbers } from "@/utils";
 
 import { IProps } from "./calendarHeader.interfaces";
@@ -18,7 +18,6 @@ import {
 export const CalendarHeader = memo<IProps>(
     ({
         shownDate: { month, year },
-        currentDate,
         maxDate,
         minDate,
         onChange,
@@ -27,7 +26,7 @@ export const CalendarHeader = memo<IProps>(
         handlePrevMonthClick,
     }) => (
         <StyledHeader>
-            <Title onClick={onClick}>{currentDate.day}</Title>
+            <Title onClick={onClick}>{CURRENT_DATE.day}</Title>
             <Row>
                 <StyledButton
                     type="button"
@@ -44,7 +43,7 @@ export const CalendarHeader = memo<IProps>(
                         ))}
                     </StyledSelect>
                     <StyledSelect name="currentYear" value={year} onChange={onChange}>
-                        {getYearNumbers(currentDate.year).map((yearItem) => (
+                        {getYearNumbers(CURRENT_DATE.year).map((yearItem) => (
                             <option key={yearItem} value={yearItem}>
                                 {yearItem}
                             </option>

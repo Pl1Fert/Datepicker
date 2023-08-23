@@ -1,5 +1,6 @@
 import { memo } from "react";
 
+import { CURRENT_DATE } from "@/constants";
 import { areEqualDates, getMonthData, getWeekDaysNames, isHoliday, isWeekend } from "@/utils";
 
 import { IProps } from "./calendarBody.interfaces";
@@ -9,7 +10,6 @@ export const CalendarBody = memo<IProps>(
     ({
         selectedDate,
         startDay,
-        currentDate,
         shownDate,
         color,
         highlightWeekends,
@@ -30,7 +30,7 @@ export const CalendarBody = memo<IProps>(
                             <StyledDayCell
                                 key={day}
                                 color={color}
-                                $today={areEqualDates({ ...shownDate, day }, currentDate)}
+                                $today={areEqualDates({ ...shownDate, day }, CURRENT_DATE)}
                                 selected={areEqualDates({ ...shownDate, day }, selectedDate)}
                                 $highlightWeekends={highlightWeekends && isWeekend(index, startDay)}
                                 $highlightHolidays={
