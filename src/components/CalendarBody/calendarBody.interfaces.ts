@@ -5,6 +5,8 @@ import { IDate, IHolidaysDates, ISelectedDate } from "@/interfaces";
 
 export interface IProps {
     selectedDate?: ISelectedDate;
+    toDate?: ISelectedDate;
+    fromDate?: ISelectedDate;
     startDay: StartDay;
     shownDate: IDate;
     color?: string;

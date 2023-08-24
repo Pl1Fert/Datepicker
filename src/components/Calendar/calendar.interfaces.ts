@@ -15,9 +15,12 @@ export interface IProps {
     handlePrevMonthClick: () => void;
     handleNextMonthClick: () => void;
     selectedDate?: ISelectedDate;
+    toDate?: ISelectedDate;
+    fromDate?: ISelectedDate;
     shownDate: IDate;
     holidays: IHolidaysDates;
     renderTodoList?: () => JSX.Element;
     renderPicker?: () => JSX.Element;
+    renderPickers?: () => JSX.Element;
     handleDayClick: (e: SyntheticEvent) => void;
 }

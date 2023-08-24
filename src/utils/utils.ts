@@ -64,3 +64,11 @@ export const isValidDate = (date: IDate | undefined): boolean => {
 
     return Boolean(+newDate) && newDate.getDate() === date.day;
 };
+
+export const dateInRange = (date: IDate, fromDate: IDate, toDate: IDate): boolean => {
+    const dateN = new Date(date.year, date.month, date.day);
+    const fromDateN = new Date(fromDate.year, fromDate.month, fromDate.day);
+    const toDateN = new Date(toDate.year, toDate.month, toDate.day);
+
+    return dateN >= fromDateN && dateN <= toDateN;
+};

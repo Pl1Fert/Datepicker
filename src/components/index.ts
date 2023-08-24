@@ -3,6 +3,7 @@ export * from "./CalendarBody";
 export * from "./CalendarHeader";
 export * from "./DatePicker";
 export * from "./Picker";
+export * from "./RangePicker";
 export * from "./TodoCalendar";
 export * from "./TodoItem";
 export * from "./TodoList";
