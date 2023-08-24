@@ -16,6 +16,8 @@ export const Calendar = memo<IProps>(
         highlightHolidays = false,
         highlightWeekends = false,
         selectedDate,
+        toDate,
+        fromDate,
         handleChange,
         handleNextMonthClick,
         handlePrevMonthClick,
@@ -25,11 +27,13 @@ export const Calendar = memo<IProps>(
         renderTodoList,
         handleDayClick,
         renderPicker,
+        renderPickers,
     }) => (
         <>
             <GlobalStyles />
             <StyledMain>
                 {renderPicker && renderPicker()}
+                {renderPickers && renderPickers()}
                 <CalendarHeader
                     shownDate={shownDate}
                     maxDate={maxDate}
@@ -48,6 +52,8 @@ export const Calendar = memo<IProps>(
                     highlightWeekends={highlightWeekends}
                     holidays={holidays}
                     handleDayClick={handleDayClick}
+                    toDate={toDate}
+                    fromDate={fromDate}
                 />
                 {renderTodoList && renderTodoList()}
             </StyledMain>
