@@ -3,7 +3,7 @@ import { memo } from "react";
 import next from "@/assets/icons/Next.svg";
 import prev from "@/assets/icons/Prev.svg";
 import { CURRENT_DATE, MONTH_NAMES } from "@/constants";
-import { compareDates, getYearNumbers } from "@/utils";
+import { areEqualDates, getYearNumbers } from "@/utils";
 
 import { IProps } from "./calendarHeader.interfaces";
 import {
@@ -31,7 +31,7 @@ export const CalendarHeader = memo<IProps>(
                 <StyledButton
                     type="button"
                     onClick={handlePrevMonthClick}
-                    disabled={compareDates({ year, month }, minDate)}>
+                    disabled={areEqualDates({ year, month }, minDate)}>
                     <img src={prev} alt="prev" />
                 </StyledButton>
                 <StyledSelectContainer>
@@ -53,7 +53,7 @@ export const CalendarHeader = memo<IProps>(
                 <StyledButton
                     type="button"
                     onClick={handleNextMonthClick}
-                    disabled={compareDates({ year, month }, maxDate)}>
+                    disabled={areEqualDates({ year, month }, maxDate)}>
                     <img src={next} alt="next" />
                 </StyledButton>
             </Row>

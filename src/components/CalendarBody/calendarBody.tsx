@@ -1,7 +1,6 @@
 import { memo } from "react";
 
 import { CURRENT_DATE } from "@/constants";
-import { IDate } from "@/interfaces";
 import {
     areEqualDates,
     dateInRange,
@@ -42,11 +41,7 @@ export const CalendarBody = memo<IProps>(
                                 color={color}
                                 $today={areEqualDates({ ...shownDate, day }, CURRENT_DATE)}
                                 selected={areEqualDates({ ...shownDate, day }, selectedDate)}
-                                inRange={dateInRange(
-                                    { ...shownDate, day },
-                                    fromDate as IDate,
-                                    toDate as IDate
-                                )}
+                                inRange={dateInRange({ ...shownDate, day }, fromDate, toDate)}
                                 $highlightWeekends={highlightWeekends && isWeekend(index, startDay)}
                                 $highlightHolidays={
                                     highlightHolidays &&

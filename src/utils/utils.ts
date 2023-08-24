@@ -3,16 +3,15 @@ import { HttpResponse, IDate, IMaxMinDate, ISelectedDate } from "@/interfaces";
 
 import { formatDateToString } from "./formatters";
 
-export const areEqualDates = (a: IDate, b: IDate | ISelectedDate | undefined): boolean => {
-    if (!b) {
-        return false;
-    }
-
-    return a.year === b.year && a.month === b.month && a.day === b.day;
-};
-
-export const compareDates = (date1?: IMaxMinDate, date2?: IMaxMinDate): boolean => {
+export const areEqualDates = (
+    date1?: IDate | ISelectedDate | IMaxMinDate,
+    date2?: IDate | ISelectedDate | IMaxMinDate
+): boolean => {
     if (!date1 || !date2) return false;
+
+    if ("day" in date1 && "day" in date2) {
+        return date1.year === date2.year && date1.month === date2.month && date1.day === date2.day;
+    }
 
     return date1.year === date2.year && date1.month === date2.month;
 };
@@ -65,10 +64,35 @@ export const isValidDate = (date: IDate | undefined): boolean => {
     return Boolean(+newDate) && newDate.getDate() === date.day;
 };
 
-export const dateInRange = (date: IDate, fromDate: IDate, toDate: IDate): boolean => {
+export const dateInRange = (
+    date: IDate,
+    fromDate?: ISelectedDate,
+    toDate?: ISelectedDate
+): boolean => {
+    if (!toDate || !fromDate) {
+        return false;
+    }
+    if (
+        !toDate.year ||
+        !toDate.month ||
+        !fromDate.year ||
+        !fromDate.month ||
+        !toDate.day ||
+        !fromDate.day
+    ) {
+        return false;
+    }
+
     const dateN = new Date(date.year, date.month, date.day);
     const fromDateN = new Date(fromDate.year, fromDate.month, fromDate.day);
     const toDateN = new Date(toDate.year, toDate.month, toDate.day);
 
     return dateN >= fromDateN && dateN <= toDateN;
+};
+
+export const isSecondDateLessThanFirst = (date1: IDate, date2: IDate): boolean => {
+    const date1N = new Date(date1.year, date1.month, date1.day);
+    const date2N = new Date(date2.year, date2.month, date2.day);
+
+    return date1N > date2N;
 };

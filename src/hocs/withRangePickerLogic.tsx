@@ -9,7 +9,12 @@ import {
 
 import { Picker } from "@/components";
 import { IDate, ISelectedDate } from "@/interfaces";
-import { formatDateToString, formatStringToDate, isValidDate } from "@/utils";
+import {
+    formatDateToString,
+    formatStringToDate,
+    isSecondDateLessThanFirst,
+    isValidDate,
+} from "@/utils";
 
 export function withRangePickerLogic<T>(
     Component: ComponentType<T>,
@@ -97,8 +102,10 @@ export function withRangePickerLogic<T>(
                     })
                 );
             } else if (
-                new Date(shownDate.year, shownDate.month, parseInt(target.innerText, 10)) >
-                new Date(fromDate.year as number, fromDate.month as number, fromDate.day)
+                isSecondDateLessThanFirst(
+                    { ...shownDate, day: parseInt(target.innerText, 10) },
+                    fromDate as IDate
+                )
             ) {
                 setToDate({
                     year: shownDate.year,

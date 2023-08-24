@@ -6,8 +6,6 @@ export const StyledListItem = styled.li`
     justify-content: space-between;
 `;
 
-export const StyledParagraph = styled.p``;
-
 export const StyledButton = styled.button`
     margin-top: 4px;
     border: none;

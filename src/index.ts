@@ -1,6 +1,5 @@
-import { Calendar } from "@/components/Calendar";
-import { DatePicker } from "@/components/Datepicker";
+import { DatePicker } from "@/components/DatePicker";
 import { RangePicker } from "@/components/RangePicker";
 import { TodoCalendar } from "@/components/TodoCalendar";
 
-export { Calendar, DatePicker, RangePicker, TodoCalendar };
+export { DatePicker, RangePicker, TodoCalendar };
