@@ -108,7 +108,6 @@ export function withMainLogic<T>(
                 handleTodayClick={handleTodayClick}
                 handlePrevMonthClick={handlePrevMonthClick}
                 handleNextMonthClick={handleNextMonthClick}
-                shownDate={shownDate}
                 holidays={holidays}
             />
         );

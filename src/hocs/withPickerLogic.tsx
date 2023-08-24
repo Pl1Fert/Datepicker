@@ -9,7 +9,7 @@ import {
 
 import { Picker } from "@/components";
 import { IDate, ISelectedDate } from "@/interfaces";
-import { formatDate, formatStringToDate, isValidDate } from "@/utils";
+import { formatDateToString, formatStringToDate, isValidDate } from "@/utils";
 
 export function withPickerLogic<T>(
     Component: ComponentType<T>,
@@ -21,7 +21,7 @@ export function withPickerLogic<T>(
     return (
         hocProps: Omit<T, "selectedDate" | "setSelectedDate" | "setShownDate" | "handleDayClick">
     ) => {
-        const [dateString, setDateString] = useState<string>("");
+        const [dateString, setDateString] = useState<string>(formatDateToString(selectedDate));
 
         const handleInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
@@ -47,7 +47,7 @@ export function withPickerLogic<T>(
             setSelectedDate(date as ISelectedDate);
         };
 
-        const handleClearDate = () => {
+        const handleClearDate = (): void => {
             setDateString("");
             setSelectedDate({ year: undefined, month: undefined, day: undefined });
         };
@@ -61,7 +61,7 @@ export function withPickerLogic<T>(
                 day: parseInt(target.innerText, 10),
             } as ISelectedDate);
             setDateString(
-                formatDate({
+                formatDateToString({
                     year: shownDate.year,
                     month: shownDate.month,
                     day: parseInt(target.innerText, 10),
@@ -69,7 +69,7 @@ export function withPickerLogic<T>(
             );
         };
 
-        const renderPicker = () => (
+        const renderPicker = (): JSX.Element => (
             <Picker
                 value={dateString}
                 onChange={handleInputChange}
@@ -85,6 +85,7 @@ export function withPickerLogic<T>(
                 setSelectedDate={setSelectedDate}
                 handleDayClick={handleDayClick}
                 renderPicker={renderPicker}
+                shownDate={shownDate}
             />
         );
     };

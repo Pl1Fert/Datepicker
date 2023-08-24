@@ -9,15 +9,3 @@ export const StyledMain = styled.main`
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
 `;
-
-export const StyledInput = styled.input`
-    width: 100%;
-    padding: 2px 4px;
-
-    font: inherit;
-    outline: none;
-
-    &:invalid {
-        border-color: red;
-    }
-`;

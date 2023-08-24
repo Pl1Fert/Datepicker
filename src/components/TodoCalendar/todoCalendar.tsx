@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 
 import { Calendar } from "@/components";
 import { CURRENT_DATE, StartDay } from "@/constants";
@@ -29,7 +29,11 @@ export const TodoCalendar = memo<IProps>(
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialSelectedDate);
 
-        const CalendarWithMainLogic = withMainLogic(Calendar, shownDate, setShownDate);
+        const CalendarWithMainLogic = useMemo(
+            () => withMainLogic(Calendar, shownDate, setShownDate),
+            [shownDate]
+        );
+
         const CalendarWithTodoList = withTodoListLogic(
             CalendarWithMainLogic,
             selectedDate,
@@ -38,16 +42,14 @@ export const TodoCalendar = memo<IProps>(
         );
 
         return (
-            <div>
-                <CalendarWithTodoList
-                    startDay={startDay}
-                    maxDate={maxDate}
-                    minDate={minDate}
-                    color={color}
-                    highlightHolidays={highlightHolidays}
-                    highlightWeekends={highlightWeekends}
-                />
-            </div>
+            <CalendarWithTodoList
+                startDay={startDay}
+                maxDate={maxDate}
+                minDate={minDate}
+                color={color}
+                highlightHolidays={highlightHolidays}
+                highlightWeekends={highlightWeekends}
+            />
         );
     }
 );

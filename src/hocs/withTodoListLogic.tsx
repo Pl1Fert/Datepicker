@@ -10,7 +10,7 @@ import {
 
 import { TodoListContainer } from "@/components";
 import { IDate, ISelectedDate, ITodo } from "@/interfaces";
-import { formatDate } from "@/utils";
+import { formatDateToString } from "@/utils";
 
 export function withTodoListLogic<T>(
     Component: ComponentType<T>,
@@ -46,7 +46,7 @@ export function withTodoListLogic<T>(
 
             setTodoList((prevTodoList) => [
                 ...prevTodoList,
-                { id: Date.now(), date: formatDate(selectedDate), content: todo },
+                { id: Date.now(), date: formatDateToString(selectedDate), content: todo },
             ]);
             setTodo("");
         };
@@ -72,14 +72,14 @@ export function withTodoListLogic<T>(
             } as ISelectedDate);
         };
 
-        const renderTodoList = () => (
+        const renderTodoList = (): JSX.Element => (
             <TodoListContainer
                 todo={todo}
                 handleChange={handleChange}
                 todoList={todoList}
                 handleAddNewTodo={handleAddNewTodo}
                 handleDeleteTodo={handleDeleteTodo}
-                selectedDate={formatDate(selectedDate)}
+                selectedDate={formatDateToString(selectedDate)}
             />
         );
 
@@ -90,6 +90,7 @@ export function withTodoListLogic<T>(
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
                 handleDayClick={handleDayClick}
+                shownDate={shownDate}
             />
         );
     };
