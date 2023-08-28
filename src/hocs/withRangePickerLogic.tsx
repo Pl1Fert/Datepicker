@@ -129,12 +129,14 @@ export function withRangePickerLogic<T>(
                     onChange={handleFromInputChange}
                     onKeyDown={handleEnterFromDate}
                     onClick={handleClearFromDate}
+                    testId="fromPicker"
                 />
                 <Picker
                     value={toDateString}
                     onChange={handleToInputChange}
                     onKeyDown={handleEnterToDate}
                     onClick={handleClearToDate}
+                    testId="toPicker"
                 />
             </>
         );

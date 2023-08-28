@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RangePicker } from "@/components";
-import { StartDay } from "@/constants";
+import { RangePicker } from "../src/components";
+import { StartDay } from "../src/constants";
 
 const meta: Meta<typeof RangePicker> = {
     title: "RangePicker",

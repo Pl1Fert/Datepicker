@@ -5,7 +5,7 @@ import { CalendarIcon, ClearIcon } from "@/components/Icons";
 import { IProps } from "./picker.interfaces";
 import { CalendarIconWrapper, ClearIconWrapper, Container, StyledInput } from "./picker.styled";
 
-export const Picker = memo<IProps>(({ value, onChange, onKeyDown, onClick }) => (
+export const Picker = memo<IProps>(({ value, onChange, onKeyDown, onClick, testId }) => (
     <Container>
         <CalendarIconWrapper>
             <CalendarIcon />
@@ -17,8 +17,9 @@ export const Picker = memo<IProps>(({ value, onChange, onKeyDown, onClick }) => 
             value={value}
             onChange={onChange}
             onKeyDown={onKeyDown}
+            data-testid={testId}
         />
-        <ClearIconWrapper onClick={onClick}>
+        <ClearIconWrapper onClick={onClick} data-testid="clearButton">
             <ClearIcon />
         </ClearIconWrapper>
     </Container>

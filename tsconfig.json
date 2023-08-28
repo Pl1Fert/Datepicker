@@ -30,7 +30,6 @@
             "@/*": ["src/*"]
         }
     },
-    "include": ["src/**/*", "src/globals/index.d.ts"],
-    "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "src/**/*.stories.tsx"],
-    "filesGlob": ["**/*.ts"]
+    "include": ["src/**/*", "test"],
+    "exclude": ["dist", "node_modules", "stories"]
 }

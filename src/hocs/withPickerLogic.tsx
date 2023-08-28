@@ -75,6 +75,7 @@ export function withPickerLogic<T>(
                 onChange={handleInputChange}
                 onKeyDown={handleEnterDate}
                 onClick={handleClearDate}
+                testId="picker"
             />
         );
 

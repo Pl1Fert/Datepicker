@@ -14,6 +14,7 @@ export const TodoListContainer = memo<IProps>(
                 onChange={handleChange}
                 placeholder="Create a new todo..."
                 onKeyDown={handleAddNewTodo}
+                data-testid="todo"
             />
             <TodoList
                 todoList={todoList}

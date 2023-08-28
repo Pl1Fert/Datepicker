@@ -2,3 +2,5 @@
 yarn.lock
 /dist
 rollup.config.mjs
+jest.config.js
+stories

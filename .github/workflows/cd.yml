@@ -1,7 +1,7 @@
 name: Continuous Deploy
 on: [push]
 jobs:
-    buildAndTest:
+    buildAndDeploy:
         name: Build and Deploy
         runs-on: ubuntu-latest
         steps:
@@ -10,5 +10,5 @@ jobs:
               run: yarn
             - name: Build
               run: yarn build-lib
-            - name: Test
+            - name: Deploy
               run: npm publish
