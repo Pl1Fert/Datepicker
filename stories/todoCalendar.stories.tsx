@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { TodoCalendar } from "@/components";
-import { StartDay } from "@/constants";
+import { TodoCalendar } from "../src/components";
+import { StartDay } from "../src/constants";
 
 const meta: Meta<typeof TodoCalendar> = {
     title: "TodoCalendar",
