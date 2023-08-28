@@ -13,7 +13,7 @@ export const TodoItem = memo<IProps>(({ item: { content, id }, handleDeleteTodo 
     return (
         <StyledListItem>
             <p>{content}</p>
-            <StyledButton type="button" onClick={handleDeleteClick}>
+            <StyledButton type="button" onClick={handleDeleteClick} data-testid="deleteTodoButton">
                 <ClearIcon />
             </StyledButton>
         </StyledListItem>

@@ -81,9 +81,8 @@ describe("DatePicker tests", () => {
 
         expect(screen.getByText("5")).toBeInTheDocument();
         await userEvent.click(screen.getByText("5"));
-        const picker: HTMLInputElement = screen.getByTestId("picker");
 
-        expect(picker.value).toBe(formatDateToString(currentDate));
+        expect(screen.getByTestId("picker")).toHaveValue(formatDateToString(currentDate));
     });
 
     test("should show today month onclick", async () => {
@@ -110,11 +109,27 @@ describe("DatePicker tests", () => {
         expect(screen.getByText("5")).toBeInTheDocument();
         expect(screen.getByTestId("clearButton")).toBeInTheDocument();
         await userEvent.click(screen.getByText("5"));
-        let picker: HTMLInputElement = screen.getByTestId("picker");
-
-        expect(picker.value).toBe(formatDateToString(currentDate));
+        expect(screen.getByTestId("picker")).toHaveValue(formatDateToString(currentDate));
         await userEvent.click(screen.getByTestId("clearButton"));
-        picker = screen.getByTestId("picker");
-        expect(picker.value).toBe("");
+        expect(screen.getByTestId("picker")).toHaveValue("");
+    });
+
+    test("should handle user type", async () => {
+        await userEvent.type(screen.getByTestId("picker"), "2024-01-01{enter}");
+        expect(screen.getByTestId("picker")).toHaveValue("2024-01-01");
+
+        expect(screen.getByText("January")).toBeInTheDocument();
+        expect(screen.getByText("2024")).toBeInTheDocument();
+    });
+
+    test("should handle correct user type", async () => {
+        const currentYear = new Date().getFullYear().toString();
+        const currentMonth = new Date().getMonth().toString();
+
+        await userEvent.type(screen.getByTestId("picker"), "2024-51-01{enter}");
+        expect(screen.getByTestId("picker")).toHaveValue("2024-51-01");
+
+        expect(screen.getByText(currentMonth)).toBeInTheDocument();
+        expect(screen.getByText(currentYear)).toBeInTheDocument();
     });
 });
