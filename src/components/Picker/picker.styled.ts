@@ -10,7 +10,6 @@ export const StyledInput = styled.input`
     outline: none;
 
     color: ${defaultColors.black};
-    background-color: transparent;
 
     &:invalid {
         border-color: red;

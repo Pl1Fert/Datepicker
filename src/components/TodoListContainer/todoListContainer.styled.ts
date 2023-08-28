@@ -9,7 +9,6 @@ export const StyledInput = styled.input`
     font: inherit;
     outline: none;
 
-    background-color: transparent;
     color: ${defaultColors.black};
 
     &:invalid {

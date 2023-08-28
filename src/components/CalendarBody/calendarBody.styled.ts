@@ -19,11 +19,11 @@ export const StyledDayName = styled.p`
 
 export const StyledDayCell = styled.p<{
     $today: boolean;
-    selected?: boolean;
-    color?: string;
+    $selected?: boolean;
+    $color?: string;
     $highlightWeekends: boolean;
     $highlightHolidays: boolean;
-    inRange: boolean;
+    $inRange?: boolean;
 }>`
     padding: 8px 5px;
     border: 1px solid;
@@ -31,11 +31,11 @@ export const StyledDayCell = styled.p<{
     font-weight: 500;
     text-align: center;
 
-    border-radius: ${({ inRange }) => (inRange ? "0px" : "8px")};
-    background-color: ${({ $today, color, inRange }) =>
-        $today ? color || defaultColors.blue : inRange ? defaultColors.lightBlue : "transparent"};
-    border-color: ${({ selected, color }) =>
-        selected ? color || defaultColors.blue : "transparent"};
+    border-radius: ${({ $inRange }) => ($inRange ? "0px" : "8px")};
+    background-color: ${({ $today, $color, $inRange }) =>
+        $today ? $color || defaultColors.blue : $inRange ? defaultColors.lightBlue : "transparent"};
+    border-color: ${({ $selected, $color }) =>
+        $selected ? $color || defaultColors.blue : "transparent"};
     color: ${({ $today, $highlightWeekends, $highlightHolidays }) =>
         $today
             ? defaultColors.white

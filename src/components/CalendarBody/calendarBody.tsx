@@ -38,10 +38,10 @@ export const CalendarBody = memo<IProps>(
                         day ? (
                             <StyledDayCell
                                 key={day}
-                                color={color}
+                                $color={color}
                                 $today={areEqualDates({ ...shownDate, day }, CURRENT_DATE)}
-                                selected={areEqualDates({ ...shownDate, day }, selectedDate)}
-                                inRange={dateInRange({ ...shownDate, day }, fromDate, toDate)}
+                                $selected={areEqualDates({ ...shownDate, day }, selectedDate)}
+                                $inRange={dateInRange({ ...shownDate, day }, fromDate, toDate)}
                                 $highlightWeekends={highlightWeekends && isWeekend(index, startDay)}
                                 $highlightHolidays={
                                     highlightHolidays &&
