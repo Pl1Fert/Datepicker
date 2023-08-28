@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { defaultColors } from "@/styles/colors";
+
 export const StyledInput = styled.input`
     width: 100%;
     padding: 2px 25px;
@@ -7,12 +9,15 @@ export const StyledInput = styled.input`
     font: inherit;
     outline: none;
 
+    color: ${defaultColors.black};
+    background-color: transparent;
+
     &:invalid {
         border-color: red;
     }
 `;
 
-export const ClearIcon = styled.img`
+export const ClearIconWrapper = styled.span`
     position: absolute;
     top: 50%;
     right: 5px;
@@ -21,7 +26,7 @@ export const ClearIcon = styled.img`
 
     cursor: pointer;
 `;
-export const CalendarIcon = styled.img`
+export const CalendarIconWrapper = styled.span`
     position: absolute;
     top: 50%;
     left: 5px;

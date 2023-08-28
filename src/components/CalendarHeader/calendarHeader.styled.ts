@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { defaultColors } from "@/styles/colors";
+
 export const Row = styled.div`
     margin-bottom: 15px;
 
@@ -22,6 +24,7 @@ export const Title = styled.h4`
     font-weight: 500;
     font-size: 10px;
 
+    color: ${defaultColors.black};
     border-radius: 4px;
 
     cursor: pointer;
@@ -43,11 +46,13 @@ export const StyledButton = styled.button`
 export const StyledSelect = styled.select`
     border: none;
 
+    font: inherit;
+
     outline: none;
     background: transparent;
+    color: ${defaultColors.black};
 
     cursor: pointer;
-
     appearance: none;
 `;
 

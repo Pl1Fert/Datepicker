@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { defaultColors } from "@/styles/colors";
+
 export const SevenColGrid = styled.div`
     margin-bottom: 10px;
 
@@ -31,16 +33,23 @@ export const StyledDayCell = styled.p<{
 
     border-radius: ${({ inRange }) => (inRange ? "0px" : "8px")};
     background-color: ${({ $today, color, inRange }) =>
-        $today ? color || "#2F80ED" : inRange ? "#2F80ED23" : "transparent"};
-    border-color: ${({ selected, color }) => (selected ? color || "#2F80ED" : "transparent")};
+        $today ? color || defaultColors.blue : inRange ? defaultColors.lightBlue : "transparent"};
+    border-color: ${({ selected, color }) =>
+        selected ? color || defaultColors.blue : "transparent"};
     color: ${({ $today, $highlightWeekends, $highlightHolidays }) =>
-        $today ? "white" : $highlightWeekends ? "red" : $highlightHolidays ? "green" : "black"};
+        $today
+            ? defaultColors.white
+            : $highlightWeekends
+            ? defaultColors.red
+            : $highlightHolidays
+            ? defaultColors.green
+            : defaultColors.black};
 
     cursor: pointer;
 
     transition: all 0.2s linear;
 
     &:hover {
-        background-color: lightgray;
+        background-color: ${({ color }) => color || defaultColors.lightBlue};
     }
 `;
