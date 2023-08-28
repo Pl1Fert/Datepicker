@@ -21,7 +21,7 @@ import { DatePicker, TodoCalendar, RangePicker } from "datepicker-pl1fert";
 The highlightHolidays prop is a boolean that determines whether holidays should be highlighted in the TodoCalendar component. When set to true, holidays will be visually distinguished from other days in the calendar.
 
 ```jsx
-<DatePicker highlightHolidays>
+<DatePicker highlightHolidays/>
 ```
 
 #### default: false
@@ -31,7 +31,7 @@ The highlightHolidays prop is a boolean that determines whether holidays should 
 The highlightWeekends prop is also a boolean that controls whether weekends should be highlighted in the TodoCalendar. When set to true, weekends will be visually differentiated from weekdays.
 
 ```jsx
-<DatePicker highlightWeekends>
+<DatePicker highlightWeekends/>
 ```
 
 #### default: false
@@ -41,7 +41,7 @@ The highlightWeekends prop is also a boolean that controls whether weekends shou
 The color prop is a string that specifies the color to be used for highlighting days in components. This prop allows users to customize the appearance of highlighted days according to their preferences.
 
 ```jsx
-<DatePicker color="#8a0000">
+<DatePicker color="#8a0000"/>
 ```
 
 #### default: blue color
@@ -51,7 +51,7 @@ The color prop is a string that specifies the color to be used for highlighting 
 The maxDate and minDate props are objects that define the upper and lower limits for date selection in components. The maxDate object represents the latest date that can be selected, while the minDate object represents the earliest selectable date. These props provide users with the ability to restrict date selection within a specific range, ensuring that tasks are scheduled within desired timeframes.
 
 ```jsx
-<DatePicker maxDate={{year: 2025, month: 5}} minDate={{year: 2020, month: 5}}>
+<DatePicker maxDate={{year: 2025, month: 5}} minDate={{year: 2020, month: 5}}/>
 ```
 
 #### default: null
@@ -61,7 +61,7 @@ The maxDate and minDate props are objects that define the upper and lower limits
 The startDay prop is a string that determines the starting day of the week in the TodoCalendar component. It can be set to either "sunday" or "monday". When set to "sunday", the calendar will display Sunday as the first day of the week. When set to "monday", Monday will be the first day of the week. This prop allows users to customize the calendar layout based on their preferred starting day.
 
 ```jsx
-<DatePicker startDay="Sunday">
+<DatePicker startDay="Sunday"/>
 ```
 
 #### default: Monday
