@@ -3,6 +3,7 @@ import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
+import dts from "rollup-plugin-dts";
 
 export default [
     {
@@ -19,14 +20,29 @@ export default [
             },
         ],
         plugins: [
-            typescript(),
+            external(),
+            typescript({ tsconfig: "./tsconfig.json" }),
             babel({
                 exclude: "node_modules/**",
                 presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
             }),
-            external(),
-            resolve(),
+            resolve({
+                jsnext: true,
+                main: true,
+                browser: true,
+            }),
             terser(),
         ],
+        external: ["styled-components"],
+    },
+    {
+        input: "./src/index.ts",
+        output: [
+            {
+                file: "dist/types.d.ts",
+                format: "es",
+            },
+        ],
+        plugins: [dts],
     },
 ];
