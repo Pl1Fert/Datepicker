@@ -3,6 +3,8 @@
         "target": "ESNext",
         "lib": ["ESNext", "DOM", "DOM.Iterable"],
         "module": "ESNext",
+        "declaration": true,
+        "declarationDir": "types",
         "jsx": "react-jsx",
         "outDir": "./dist",
         "moduleResolution": "Node",
@@ -29,5 +31,6 @@
         }
     },
     "include": ["src/**/*", "src/globals/index.d.ts"],
+    "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "src/**/*.stories.tsx"],
     "filesGlob": ["**/*.ts"]
 }

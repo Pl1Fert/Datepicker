@@ -4,8 +4,9 @@ import { StartDay } from "@/constants";
 import { IDate, IHolidaysDates, ISelectedDate } from "@/interfaces";
 
 export interface IProps {
-    selectedDate: ISelectedDate;
-    currentDate: IDate;
+    selectedDate?: ISelectedDate;
+    toDate?: ISelectedDate;
+    fromDate?: ISelectedDate;
     startDay: StartDay;
     shownDate: IDate;
     color?: string;

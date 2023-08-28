@@ -1,6 +1,14 @@
 import { memo } from "react";
 
-import { areEqualDates, getMonthData, getWeekDaysNames, isHoliday, isWeekend } from "@/utils";
+import { CURRENT_DATE } from "@/constants";
+import {
+    areEqualDates,
+    dateInRange,
+    getMonthData,
+    getWeekDaysNames,
+    isHoliday,
+    isWeekend,
+} from "@/utils";
 
 import { IProps } from "./calendarBody.interfaces";
 import { SevenColGrid, StyledDayCell, StyledDayName } from "./calendarBody.styled";
@@ -8,8 +16,9 @@ import { SevenColGrid, StyledDayCell, StyledDayName } from "./calendarBody.style
 export const CalendarBody = memo<IProps>(
     ({
         selectedDate,
+        toDate,
+        fromDate,
         startDay,
-        currentDate,
         shownDate,
         color,
         highlightWeekends,
@@ -30,8 +39,9 @@ export const CalendarBody = memo<IProps>(
                             <StyledDayCell
                                 key={day}
                                 color={color}
-                                $today={areEqualDates({ ...shownDate, day }, currentDate)}
+                                $today={areEqualDates({ ...shownDate, day }, CURRENT_DATE)}
                                 selected={areEqualDates({ ...shownDate, day }, selectedDate)}
+                                inRange={dateInRange({ ...shownDate, day }, fromDate, toDate)}
                                 $highlightWeekends={highlightWeekends && isWeekend(index, startDay)}
                                 $highlightHolidays={
                                     highlightHolidays &&

@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Calendar } from "@/components";
+import { DatePicker } from "@/components";
 import { StartDay } from "@/constants";
 
-const meta: Meta<typeof Calendar> = {
-    title: "Calendar",
-    component: Calendar,
+const meta: Meta<typeof DatePicker> = {
+    title: "DatePicker",
+    component: DatePicker,
     tags: ["autodocs"],
     argTypes: {
         startDay: {
@@ -25,7 +25,7 @@ const meta: Meta<typeof Calendar> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof Calendar>;
+type Story = StoryObj<typeof DatePicker>;
 
 export const Default: Story = {
     args: {

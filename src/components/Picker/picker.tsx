@@ -1,14 +1,15 @@
 import { memo } from "react";
 
-import calendar from "@/assets/icons/Calendar.svg";
-import clear from "@/assets/icons/Clear.svg";
+import { CalendarIcon, ClearIcon } from "@/components/Icons";
 
 import { IProps } from "./picker.interfaces";
-import { CalendarIcon, ClearIcon, Container, StyledInput } from "./picker.styled";
+import { CalendarIconWrapper, ClearIconWrapper, Container, StyledInput } from "./picker.styled";
 
 export const Picker = memo<IProps>(({ value, onChange, onKeyDown, onClick }) => (
     <Container>
-        <CalendarIcon src={calendar} alt="calendar" />
+        <CalendarIconWrapper>
+            <CalendarIcon />
+        </CalendarIconWrapper>
         <StyledInput
             type="text"
             placeholder="yyyy-mm-dd"
@@ -17,6 +18,8 @@ export const Picker = memo<IProps>(({ value, onChange, onKeyDown, onClick }) => 
             onChange={onChange}
             onKeyDown={onKeyDown}
         />
-        <ClearIcon src={clear} alt="clear" onClick={onClick} />
+        <ClearIconWrapper onClick={onClick}>
+            <ClearIcon />
+        </ClearIconWrapper>
     </Container>
 ));
