@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import clear from "@/assets/icons/Clear.svg";
+import { ClearIcon } from "@/components/Icons";
 
 import { IProps } from "./todoItem.interfaces";
 import { StyledButton, StyledListItem } from "./todoItem.styled";
@@ -14,7 +14,7 @@ export const TodoItem = memo<IProps>(({ item: { content, id }, handleDeleteTodo 
         <StyledListItem>
             <p>{content}</p>
             <StyledButton type="button" onClick={handleDeleteClick}>
-                <img src={clear} alt="clear" />
+                <ClearIcon />
             </StyledButton>
         </StyledListItem>
     );

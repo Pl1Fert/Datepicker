@@ -1,7 +1,6 @@
 import { memo } from "react";
 
-import next from "@/assets/icons/Next.svg";
-import prev from "@/assets/icons/Prev.svg";
+import { NextIcon, PrevIcon } from "@/components/Icons";
 import { CURRENT_DATE, MONTH_NAMES } from "@/constants";
 import { areEqualDates, getYearNumbers } from "@/utils";
 
@@ -32,7 +31,7 @@ export const CalendarHeader = memo<IProps>(
                     type="button"
                     onClick={handlePrevMonthClick}
                     disabled={areEqualDates({ year, month }, minDate)}>
-                    <img src={prev} alt="prev" />
+                    <PrevIcon />
                 </StyledButton>
                 <StyledSelectContainer>
                     <StyledSelect name="currentMonth" value={month} onChange={onChange}>
@@ -54,7 +53,7 @@ export const CalendarHeader = memo<IProps>(
                     type="button"
                     onClick={handleNextMonthClick}
                     disabled={areEqualDates({ year, month }, maxDate)}>
-                    <img src={next} alt="next" />
+                    <NextIcon />
                 </StyledButton>
             </Row>
         </StyledHeader>
