@@ -2,6 +2,7 @@ export * from "./Calendar";
 export * from "./CalendarBody";
 export * from "./CalendarHeader";
 export * from "./DatePicker";
+export * from "./ErrorBoundary";
 export * from "./Icons";
 export * from "./Picker";
 export * from "./RangePicker";

@@ -1,6 +1,6 @@
 import { memo, useMemo, useState } from "react";
 
-import { Calendar } from "@/components";
+import { Calendar, ErrorBoundary } from "@/components";
 import { CURRENT_DATE, StartDay } from "@/constants";
 import { withMainLogic, withPickerLogic } from "@/hocs";
 import { IDate, ISelectedDate } from "@/interfaces";
@@ -42,14 +42,16 @@ export const DatePicker = memo<IProps>(
         );
 
         return (
-            <CalendarWithPicker
-                startDay={startDay}
-                maxDate={maxDate}
-                minDate={minDate}
-                color={color}
-                highlightHolidays={highlightHolidays}
-                highlightWeekends={highlightWeekends}
-            />
+            <ErrorBoundary>
+                <CalendarWithPicker
+                    startDay={startDay}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    color={color}
+                    highlightHolidays={highlightHolidays}
+                    highlightWeekends={highlightWeekends}
+                />
+            </ErrorBoundary>
         );
     }
 );

@@ -1,6 +1,6 @@
 import { memo, useMemo, useState } from "react";
 
-import { Calendar } from "@/components";
+import { Calendar, ErrorBoundary } from "@/components";
 import { CURRENT_DATE, StartDay } from "@/constants";
 import { withMainLogic, withRangePickerLogic } from "@/hocs";
 import { IDate, ISelectedDate } from "@/interfaces";
@@ -45,14 +45,16 @@ export const RangePicker = memo<IProps>(
         );
 
         return (
-            <CalendarWithRangePicker
-                startDay={startDay}
-                maxDate={maxDate}
-                minDate={minDate}
-                color={color}
-                highlightHolidays={highlightHolidays}
-                highlightWeekends={highlightWeekends}
-            />
+            <ErrorBoundary>
+                <CalendarWithRangePicker
+                    startDay={startDay}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    color={color}
+                    highlightHolidays={highlightHolidays}
+                    highlightWeekends={highlightWeekends}
+                />
+            </ErrorBoundary>
         );
     }
 );

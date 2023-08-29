@@ -4,3 +4,5 @@ yarn.lock
 rollup.config.mjs
 jest.config.js
 stories
+
+src/components/ErrorBoundary/errorBoundary.tsx
