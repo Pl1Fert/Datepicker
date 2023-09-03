@@ -21,16 +21,15 @@ export function withTodoListLogic<T>(
     return (
         hocProps: Omit<T, "selectedDate" | "setSelectedDate" | "shownDate" | "handleDayClick">
     ) => {
-        const [todoList, setTodoList] = useState<ITodo[]>([]);
-        const [todo, setTodo] = useState<string>("");
-
-        useEffect(() => {
+        const [todoList, setTodoList] = useState<ITodo[]>(() => {
             const value = localStorage.getItem("todoList");
             if (typeof value === "string") {
                 const storedTodoList: ITodo[] = JSON.parse(value) as ITodo[];
-                setTodoList(storedTodoList);
+                return storedTodoList;
             }
-        }, []);
+            return [];
+        });
+        const [todo, setTodo] = useState<string>("");
 
         useEffect(() => {
             localStorage.setItem("todoList", JSON.stringify(todoList));
