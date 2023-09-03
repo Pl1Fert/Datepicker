@@ -2,7 +2,7 @@ import { memo, useMemo, useState } from "react";
 
 import { Calendar, ErrorBoundary } from "@/components";
 import { CURRENT_DATE, StartDay } from "@/constants";
-import { withMainLogic, withPickerLogic } from "@/hocs";
+import { withMainLogic, withPickerLogic, withTodoListLogic } from "@/hocs";
 import { IDate, ISelectedDate } from "@/interfaces";
 
 import { IProps } from "./datePicker.interfaces";
@@ -34,8 +34,16 @@ export const DatePicker = memo<IProps>(
             () => withMainLogic(Calendar, shownDate, setShownDate),
             [shownDate]
         );
-        const CalendarWithPicker = withPickerLogic(
+
+        const CalendarWithTodoList = withTodoListLogic(
             CalendarWithMainLogic,
+            selectedDate,
+            setSelectedDate,
+            shownDate
+        );
+
+        const CalendarWithPicker = withPickerLogic(
+            CalendarWithTodoList,
             selectedDate,
             setSelectedDate,
             shownDate,
