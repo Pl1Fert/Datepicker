@@ -1,0 +1,14 @@
+name: Continuous Deploy
+on: [push]
+jobs:
+    buildAndDeploy:
+        name: Build and Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: Install Dependencies
+              run: yarn
+            - name: Build
+              run: yarn build-lib
+            - name: Deploy
+              run: npm publish

@@ -1,0 +1,8 @@
+/node_module
+yarn.lock
+/dist
+rollup.config.mjs
+jest.config.js
+stories
+
+src/components/ErrorBoundary/errorBoundary.tsx

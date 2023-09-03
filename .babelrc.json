@@ -1,0 +1,27 @@
+{
+    "sourceType": "unambiguous",
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "chrome": 100,
+                    "safari": 15,
+                    "firefox": 91
+                }
+            }
+        ],
+        "@babel/preset-typescript",
+        [
+            "@babel/preset-react",
+            {
+                "runtime": "automatic"
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-throw-expressions",
+        "@babel/plugin-proposal-export-default-from"
+    ]
+}
