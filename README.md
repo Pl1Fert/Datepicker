@@ -86,7 +86,7 @@ The onChange prop is a function that allows you to get value from Datepicker/Ran
 <DatePicker onChange={onChange} />
 ```
 
-#### default: Monday
+#### default: null
 
 ## Available scripts
 

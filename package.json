@@ -1,9 +1,14 @@
 {
     "name": "datepicker-pl1fert",
-    "version": "1.0.6",
+    "version": "1.0.11",
     "main": "dist/index.js",
-    "repository": "https://github.com/Pl1Fert/Datepicker.git",
-    "author": "Pl1Fert",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Pl1Fert/Datepicker.git"
+    },
+    "author": {
+        "name": "Pl1Fert"
+    },
     "license": "MIT",
     "module": "dist/index.es.js",
     "types": "dist/index.d.ts",
@@ -35,6 +40,7 @@
         "@types/styled-components": "^5.1.26",
         "@typescript-eslint/eslint-plugin": "^6.4.0",
         "@typescript-eslint/parser": "^6.4.0",
+        "chromatic": "^6.24.1",
         "eslint": "^8.47.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-airbnb-typescript": "^17.1.0",
@@ -75,7 +81,8 @@
         "lint": "eslint \"src/**/*.{ts,tsx}\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
         "prepare": "husky install",
-        "test": "jest"
+        "test": "jest",
+        "chromatic": "npx chromatic --project-token=chpt_38ce3f4fc7add1b"
     },
     "resolutions": {
         "jackspeak": "2.1.1",
@@ -84,5 +91,11 @@
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": "yarn eslint",
         "*.{js,jsx,ts,tsx,html,css}": "yarn prettier --check"
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/Pl1Fert/Datepicker/issues"
+    },
+    "readme": "ERROR: No README data found!",
+    "homepage": "https://github.com/Pl1Fert/Datepicker#readme",
+    "_id": "datepicker-pl1fert@1.0.10"
 }

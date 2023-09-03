@@ -1,14 +1,15 @@
-name: Continuous Deploy
-on: [push]
+name: "Continuous Deployment"
+
+on: push
+
 jobs:
-    buildAndDeploy:
-        name: Build and Deploy
+    test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v1
-            - name: Install Dependencies
-              run: yarn
-            - name: Build
-              run: yarn build-lib
-            - name: Deploy
-              run: npm publish
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - run: yarn
+            - uses: chromaui/action@v1
+              with:
+                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
