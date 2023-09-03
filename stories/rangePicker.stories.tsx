@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { RangePicker } from "@/components";
 import { StartDay } from "@/constants";
+import { useState } from "react";
 
 const meta: Meta<typeof RangePicker> = {
     title: "RangePicker",
@@ -27,6 +28,16 @@ export default meta;
 
 type Story = StoryObj<typeof RangePicker>;
 
+const WithOnChangeProp = () => {
+    const [_, setValue] = useState<string>("");
+
+    const onChange = (value: string) => {
+        setValue(value);
+    };
+
+    return <RangePicker onChange={onChange} />;
+};
+
 export const Default: Story = {
     args: {
         startDay: StartDay.Monday,
@@ -41,4 +52,8 @@ export const Default: Story = {
         highlightWeekends: true,
         highlightHolidays: true,
     },
+};
+
+export const withOnChange: Story = {
+    render: () => <WithOnChangeProp />,
 };

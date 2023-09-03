@@ -23,11 +23,19 @@ export function withRangePickerLogic<T>(
     setToDate: Dispatch<SetStateAction<ISelectedDate>>,
     setFromDate: Dispatch<SetStateAction<ISelectedDate>>,
     shownDate: IDate,
-    setShownDate: Dispatch<SetStateAction<IDate>>
+    setShownDate: Dispatch<SetStateAction<IDate>>,
+    onChange?: (value: string) => void
 ) {
     return (hocProps: Omit<T, "setShownDate" | "handleDayClick" | "toDate" | "fromDate">) => {
         const [fromDateString, setFromDateString] = useState<string>(formatDateToString(fromDate));
         const [toDateString, setToDateString] = useState<string>(formatDateToString(toDate));
+
+        if (onChange) {
+            if (!fromDateString || !toDateString) {
+                onChange("");
+            }
+            onChange(`${fromDateString}/${toDateString}`);
+        }
 
         const handleFromInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
@@ -63,25 +71,24 @@ export function withRangePickerLogic<T>(
             if (e.key !== "Enter") {
                 return;
             }
-            if (!fromDateString.trim()) {
+            if (!toDateString.trim()) {
                 return;
             }
 
-            const date: IDate | undefined = formatStringToDate(fromDateString);
+            const date: IDate | undefined = formatStringToDate(toDateString);
 
             if (!isValidDate(date) || !date) {
+                return;
             }
 
             setToDate(date as ISelectedDate);
         };
 
         const handleClearFromDate = (): void => {
-            setFromDateString("");
             setFromDate({ year: undefined, month: undefined, day: undefined });
         };
 
         const handleClearToDate = (): void => {
-            setToDateString("");
             setToDate({ year: undefined, month: undefined, day: undefined });
         };
 
@@ -94,13 +101,6 @@ export function withRangePickerLogic<T>(
                     month: shownDate.month,
                     day: parseInt(target.innerText, 10),
                 });
-                setFromDateString(
-                    formatDateToString({
-                        year: shownDate.year,
-                        month: shownDate.month,
-                        day: parseInt(target.innerText, 10),
-                    })
-                );
             } else if (
                 isSecondDateLessThanFirst(
                     { ...shownDate, day: parseInt(target.innerText, 10) },
@@ -112,13 +112,6 @@ export function withRangePickerLogic<T>(
                     month: shownDate.month,
                     day: parseInt(target.innerText, 10),
                 });
-                setToDateString(
-                    formatDateToString({
-                        year: shownDate.year,
-                        month: shownDate.month,
-                        day: parseInt(target.innerText, 10),
-                    })
-                );
             }
         };
 

@@ -25,6 +25,7 @@ export const RangePicker = memo<IProps>(
         color,
         highlightHolidays = false,
         highlightWeekends = false,
+        onChange,
     }) => {
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [toDate, setToDate] = useState<ISelectedDate>(initialSelectedDate);
@@ -41,7 +42,8 @@ export const RangePicker = memo<IProps>(
             setToDate,
             setFromDate,
             shownDate,
-            setShownDate
+            setShownDate,
+            onChange
         );
 
         return (

@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { DatePicker } from "@/components";
 import { StartDay } from "@/constants";
+import { useState } from "react";
 
 const meta: Meta<typeof DatePicker> = {
     title: "DatePicker",
@@ -27,6 +28,16 @@ export default meta;
 
 type Story = StoryObj<typeof DatePicker>;
 
+const WithOnChangeProp = () => {
+    const [_, setValue] = useState<string>("");
+
+    const onChange = (value: string) => {
+        setValue(value);
+    };
+
+    return <DatePicker onChange={onChange} />;
+};
+
 export const Default: Story = {
     args: {
         startDay: StartDay.Monday,
@@ -41,4 +52,8 @@ export const Default: Story = {
         highlightWeekends: true,
         highlightHolidays: true,
     },
+};
+
+export const withOnChange: Story = {
+    render: () => <WithOnChangeProp />,
 };

@@ -16,12 +16,17 @@ export function withPickerLogic<T>(
     selectedDate: ISelectedDate,
     setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>,
     shownDate: IDate,
-    setShownDate: Dispatch<SetStateAction<IDate>>
+    setShownDate: Dispatch<SetStateAction<IDate>>,
+    onChange?: (value: string) => void
 ) {
     return (
         hocProps: Omit<T, "selectedDate" | "setSelectedDate" | "setShownDate" | "handleDayClick">
     ) => {
         const [dateString, setDateString] = useState<string>(formatDateToString(selectedDate));
+
+        if (onChange) {
+            onChange(dateString);
+        }
 
         const handleInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
@@ -48,7 +53,6 @@ export function withPickerLogic<T>(
         };
 
         const handleClearDate = (): void => {
-            setDateString("");
             setSelectedDate({ year: undefined, month: undefined, day: undefined });
         };
 
@@ -60,13 +64,6 @@ export function withPickerLogic<T>(
                 month: shownDate.month,
                 day: parseInt(target.innerText, 10),
             } as ISelectedDate);
-            setDateString(
-                formatDateToString({
-                    year: shownDate.year,
-                    month: shownDate.month,
-                    day: parseInt(target.innerText, 10),
-                })
-            );
         };
 
         const renderPicker = (): JSX.Element => (

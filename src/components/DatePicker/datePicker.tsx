@@ -25,6 +25,7 @@ export const DatePicker = memo<IProps>(
         color,
         highlightHolidays = false,
         highlightWeekends = false,
+        onChange,
     }) => {
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialSelectedDate);
@@ -38,7 +39,8 @@ export const DatePicker = memo<IProps>(
             selectedDate,
             setSelectedDate,
             shownDate,
-            setShownDate
+            setShownDate,
+            onChange
         );
 
         return (

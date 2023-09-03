@@ -8,4 +8,5 @@ export interface IProps {
     color?: string;
     highlightHolidays?: boolean;
     highlightWeekends?: boolean;
+    onChange?: (value: string) => void;
 }

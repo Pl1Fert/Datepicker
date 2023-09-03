@@ -78,6 +78,16 @@ The startDay prop is a string that determines the starting day of the week in th
 
 #### default: Monday
 
+### onChange: (value: string) => void
+
+The onChange prop is a function that allows you to get value from Datepicker/Rangepicker inputs.
+
+```jsx
+<DatePicker onChange={onChange} />
+```
+
+#### default: Monday
+
 ## Available scripts
 
 In the project directory, you can run:

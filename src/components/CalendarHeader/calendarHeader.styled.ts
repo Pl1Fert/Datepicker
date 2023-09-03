@@ -17,6 +17,10 @@ export const StyledHeader = styled.header`
 `;
 
 export const Title = styled.h4`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 18px;
     padding: 2px;
     border: 1px solid black;
