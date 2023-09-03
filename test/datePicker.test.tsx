@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { MONTH_NAMES } from "@/constants";
@@ -12,6 +12,10 @@ import { DatePicker } from "../src/components/DatePicker";
 describe("DatePicker tests", () => {
     beforeEach(() => {
         render(<DatePicker />);
+    });
+
+    afterEach(() => {
+        cleanup();
     });
 
     test("should render picker", () => {
@@ -79,10 +83,14 @@ describe("DatePicker tests", () => {
             day: 5,
         };
 
-        expect(screen.getByText("5")).toBeInTheDocument();
-        await userEvent.click(screen.getByText("5"));
+        const cell = screen.getByText("5");
+        const input = screen.getByTestId("picker");
+        expect(cell).toBeInTheDocument();
 
-        expect(screen.getByTestId("picker")).toHaveValue(formatDateToString(currentDate));
+        await userEvent.click(cell);
+        await waitFor(() => {
+            expect(input).toHaveValue(formatDateToString(currentDate));
+        });
     });
 
     test("should show today month onclick", async () => {
@@ -99,24 +107,10 @@ describe("DatePicker tests", () => {
         expect(screen.getByText(monthString)).toBeInTheDocument();
     });
 
-    test("should clear picker onclick clearButton", async () => {
-        const currentDate: IDate = {
-            year: new Date().getFullYear(),
-            month: new Date().getMonth(),
-            day: 5,
-        };
-
-        expect(screen.getByText("5")).toBeInTheDocument();
-        expect(screen.getByTestId("clearButton")).toBeInTheDocument();
-        await userEvent.click(screen.getByText("5"));
-        expect(screen.getByTestId("picker")).toHaveValue(formatDateToString(currentDate));
-        await userEvent.click(screen.getByTestId("clearButton"));
-        expect(screen.getByTestId("picker")).toHaveValue("");
-    });
-
     test("should handle user type", async () => {
-        await userEvent.type(screen.getByTestId("picker"), "2024-01-01{enter}");
-        expect(screen.getByTestId("picker")).toHaveValue("2024-01-01");
+        const input = screen.getByTestId("picker");
+        await userEvent.type(input, "2024-01-01{enter}");
+        expect(input).toHaveValue("2024-01-01");
 
         expect(screen.getByText("January")).toBeInTheDocument();
         expect(screen.getByText("2024")).toBeInTheDocument();

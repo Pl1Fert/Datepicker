@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { IDate } from "@/interfaces";
@@ -11,6 +11,10 @@ import { RangePicker } from "../src/components/RangePicker";
 describe("RangePicker tests", () => {
     beforeEach(() => {
         render(<RangePicker />);
+    });
+
+    afterEach(() => {
+        cleanup();
     });
 
     test("should render range pickers", () => {

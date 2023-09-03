@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import "@testing-library/jest-dom";
@@ -8,6 +8,10 @@ import { TodoCalendar } from "../src/components/TodoCalendar";
 describe("TodoCalendar tests", () => {
     beforeEach(() => {
         render(<TodoCalendar />);
+    });
+
+    afterEach(() => {
+        cleanup();
     });
 
     const original = window.location;
