@@ -1,6 +1,6 @@
 {
     "name": "datepicker-pl1fert",
-    "version": "1.0.12",
+    "version": "1.0.16",
     "main": "dist/index.js",
     "repository": {
         "type": "git",
@@ -69,7 +69,9 @@
     },
     "peerDependencies": {
         "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "dependencies": {
         "styled-components": "^6.0.7"
     },
     "scripts": {
