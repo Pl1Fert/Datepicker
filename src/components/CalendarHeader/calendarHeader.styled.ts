@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { defaultColors } from "@/styles/colors";
+import { defaultColors } from "@/styles/theme";
 
 export const Row = styled.div`
     margin-bottom: 15px;

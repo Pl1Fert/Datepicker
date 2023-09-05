@@ -7,6 +7,5 @@ export * from "./Icons";
 export * from "./Picker";
 export * from "./RangePicker";
 export * from "./TodoCalendar";
-export * from "./TodoItem";
 export * from "./TodoList";
 export * from "./TodoListContainer";

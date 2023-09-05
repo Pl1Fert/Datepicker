@@ -1,7 +1,7 @@
 import { memo, useMemo, useState } from "react";
 
 import { Calendar, ErrorBoundary } from "@/components";
-import { CURRENT_DATE, StartDay } from "@/constants";
+import { CURRENT_DATE, StartDayOfWeek } from "@/constants";
 import { withMainLogic, withTodoListLogic } from "@/hocs";
 import { IDate, ISelectedDate } from "@/interfaces";
 
@@ -19,7 +19,7 @@ const initialShownDate: IDate = {
 
 export const TodoCalendar = memo<IProps>(
     ({
-        startDay = StartDay.Monday,
+        startDayOfWeek = StartDayOfWeek.Monday,
         maxDate,
         minDate,
         color,
@@ -29,22 +29,20 @@ export const TodoCalendar = memo<IProps>(
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialSelectedDate);
 
-        const CalendarWithMainLogic = useMemo(
-            () => withMainLogic(Calendar, shownDate, setShownDate),
-            [shownDate]
-        );
+        const CalendarWithMainLogic = useMemo(() => withMainLogic(Calendar), [shownDate]);
 
         const CalendarWithTodoList = withTodoListLogic(
             CalendarWithMainLogic,
             selectedDate,
             setSelectedDate,
-            shownDate
+            shownDate,
+            setShownDate
         );
 
         return (
             <ErrorBoundary>
                 <CalendarWithTodoList
-                    startDay={startDay}
+                    startDayOfWeek={startDayOfWeek}
                     maxDate={maxDate}
                     minDate={minDate}
                     color={color}

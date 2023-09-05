@@ -10,16 +10,20 @@ import {
 
 import { TodoListContainer } from "@/components";
 import { IDate, ISelectedDate, ITodo } from "@/interfaces";
-import { formatDateToString } from "@/utils";
+import { formatDateToString } from "@/utils/formatters";
 
 export function withTodoListLogic<T>(
     Component: ComponentType<T>,
     selectedDate: ISelectedDate,
     setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>,
-    shownDate: IDate
+    shownDate: IDate,
+    setShownDate: Dispatch<SetStateAction<IDate>>
 ) {
     return (
-        hocProps: Omit<T, "selectedDate" | "setSelectedDate" | "shownDate" | "handleDayClick">
+        hocProps: Omit<
+            T,
+            "selectedDate" | "setSelectedDate" | "shownDate" | "handleDayClick" | "setShownDate"
+        >
     ) => {
         const [todoList, setTodoList] = useState<ITodo[]>(() => {
             const value = localStorage.getItem("todoList");
@@ -90,6 +94,7 @@ export function withTodoListLogic<T>(
                 setSelectedDate={setSelectedDate}
                 handleDayClick={handleDayClick}
                 shownDate={shownDate}
+                setShownDate={setShownDate}
             />
         );
     };

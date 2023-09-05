@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import { DatePicker } from "@/components";
-import { StartDay } from "@/constants";
+import { StartDayOfWeek } from "@/constants";
 import { useState } from "react";
 
 const meta: Meta<typeof DatePicker> = {
@@ -9,8 +9,8 @@ const meta: Meta<typeof DatePicker> = {
     component: DatePicker,
     tags: ["autodocs"],
     argTypes: {
-        startDay: {
-            options: [StartDay.Monday, StartDay.Sunday],
+        startDayOfWeek: {
+            options: [StartDayOfWeek.Monday, StartDayOfWeek.Sunday],
             control: { type: "radio" },
         },
         color: { control: "color" },
@@ -40,7 +40,7 @@ const WithOnChangeProp = () => {
 
 export const Default: Story = {
     args: {
-        startDay: StartDay.Monday,
+        startDayOfWeek: StartDayOfWeek.Monday,
         maxDate: {
             year: 2024,
             month: 1,

@@ -68,12 +68,12 @@ The maxDate and minDate props are objects that define the upper and lower limits
 
 #### default: null
 
-### startDay: string
+### startDayOfWeek: string
 
-The startDay prop is a string that determines the starting day of the week in the TodoCalendar component. It can be set to either "sunday" or "monday". When set to "sunday", the calendar will display Sunday as the first day of the week. When set to "monday", Monday will be the first day of the week. This prop allows users to customize the calendar layout based on their preferred starting day.
+The startDayOfWeek prop is a string that determines the starting day of the week in the TodoCalendar component. It can be set to either "sunday" or "monday". When set to "sunday", the calendar will display Sunday as the first day of the week. When set to "monday", Monday will be the first day of the week. This prop allows users to customize the calendar layout based on their preferred starting day.
 
 ```jsx
-<DatePicker startDay="Sunday" />
+<DatePicker startDayOfWeek="Sunday" />
 ```
 
 #### default: Monday

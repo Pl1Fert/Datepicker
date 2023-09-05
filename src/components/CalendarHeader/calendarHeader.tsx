@@ -2,7 +2,8 @@ import { memo } from "react";
 
 import { NextIcon, PrevIcon } from "@/components/Icons";
 import { CURRENT_DATE, MONTH_NAMES } from "@/constants";
-import { areEqualDates, getYearNumbers } from "@/utils";
+import { areEqualDates } from "@/helpers";
+import { getYearNumbers } from "@/utils/getters";
 
 import { IProps } from "./calendarHeader.interfaces";
 import {

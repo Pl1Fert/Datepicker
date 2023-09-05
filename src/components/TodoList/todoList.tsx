@@ -1,16 +1,24 @@
 import { memo } from "react";
 
-import { TodoItem } from "@/components";
+import { ClearIcon } from "@/components/Icons";
 
 import { IProps } from "./todoList.interfaces";
-import { StyledList } from "./todoList.styled";
+import { StyledButton, StyledList, StyledListItem } from "./todoList.styled";
 
 export const TodoList = memo<IProps>(({ todoList, formattedSelectedDate, handleDeleteTodo }) => (
     <StyledList>
         {todoList
             .filter((item) => item.date === formattedSelectedDate)
-            .map((item) => (
-                <TodoItem key={item.id} item={item} handleDeleteTodo={handleDeleteTodo} />
+            .map(({ id, content }) => (
+                <StyledListItem key={id}>
+                    <p>{content}</p>
+                    <StyledButton
+                        type="button"
+                        onClick={() => handleDeleteTodo(id)}
+                        data-testid="deleteTodoButton">
+                        <ClearIcon />
+                    </StyledButton>
+                </StyledListItem>
             ))}
     </StyledList>
 ));

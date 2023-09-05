@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { defaultColors } from "@/styles/colors";
+import { defaultColors } from "@/styles/theme";
 
 export const SevenColGrid = styled.div`
     margin-bottom: 10px;

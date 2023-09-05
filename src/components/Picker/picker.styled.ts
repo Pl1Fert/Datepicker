@@ -1,7 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-
-import { defaultColors } from "@/styles/colors";
-
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 export const StyledInput = styled.input`
     width: 100%;
     padding: 2px 25px;
@@ -9,7 +8,7 @@ export const StyledInput = styled.input`
     font: inherit;
     outline: none;
 
-    color: ${defaultColors.black};
+    color: ${({ theme }) => theme.colors.black};
 
     &:invalid {
         border-color: red;
