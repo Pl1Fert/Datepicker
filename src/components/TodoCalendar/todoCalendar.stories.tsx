@@ -1,16 +1,15 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { RangePicker } from "@/components";
-import { StartDay } from "@/constants";
-import { useState } from "react";
+import { TodoCalendar } from "@/components";
+import { StartDayOfWeek } from "@/constants";
 
-const meta: Meta<typeof RangePicker> = {
-    title: "RangePicker",
-    component: RangePicker,
+const meta: Meta<typeof TodoCalendar> = {
+    title: "TodoCalendar",
+    component: TodoCalendar,
     tags: ["autodocs"],
     argTypes: {
-        startDay: {
-            options: [StartDay.Monday, StartDay.Sunday],
+        startDayOfWeek: {
+            options: [StartDayOfWeek.Monday, StartDayOfWeek.Sunday],
             control: { type: "radio" },
         },
         color: { control: "color" },
@@ -26,21 +25,11 @@ const meta: Meta<typeof RangePicker> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof RangePicker>;
-
-const WithOnChangeProp = () => {
-    const [_, setValue] = useState<string>("");
-
-    const onChange = (value: string) => {
-        setValue(value);
-    };
-
-    return <RangePicker onChange={onChange} />;
-};
+type Story = StoryObj<typeof TodoCalendar>;
 
 export const Default: Story = {
     args: {
-        startDay: StartDay.Monday,
+        startDayOfWeek: StartDayOfWeek.Monday,
         maxDate: {
             year: 2024,
             month: 1,
@@ -52,8 +41,4 @@ export const Default: Story = {
         highlightWeekends: true,
         highlightHolidays: true,
     },
-};
-
-export const withOnChange: Story = {
-    render: () => <WithOnChangeProp />,
 };

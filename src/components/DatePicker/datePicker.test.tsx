@@ -3,11 +3,11 @@ import userEvent from "@testing-library/user-event";
 
 import { MONTH_NAMES } from "@/constants";
 import { IDate } from "@/interfaces";
-import { formatDateToString } from "@/utils";
+import { formatDateToString } from "@/utils/formatters";
 
 import "@testing-library/jest-dom";
 
-import { DatePicker } from "../src/components/DatePicker";
+import { DatePicker } from ".";
 
 describe("DatePicker tests", () => {
     beforeEach(() => {

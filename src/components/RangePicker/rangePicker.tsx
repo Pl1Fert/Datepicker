@@ -1,9 +1,11 @@
 import { memo, useMemo, useState } from "react";
+import { ThemeProvider } from "styled-components";
 
 import { Calendar, ErrorBoundary } from "@/components";
-import { CURRENT_DATE, StartDay } from "@/constants";
+import { CURRENT_DATE, StartDayOfWeek } from "@/constants";
 import { withMainLogic, withRangePickerLogic } from "@/hocs";
 import { IDate, ISelectedDate } from "@/interfaces";
+import { theme } from "@/styles/theme";
 
 import { IProps } from "./rangePicker.interfaces";
 
@@ -19,7 +21,7 @@ const initialShownDate: IDate = {
 
 export const RangePicker = memo<IProps>(
     ({
-        startDay = StartDay.Monday,
+        startDayOfWeek = StartDayOfWeek.Monday,
         maxDate,
         minDate,
         color,
@@ -28,19 +30,16 @@ export const RangePicker = memo<IProps>(
         onChange,
     }) => {
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
-        const [toDate, setToDate] = useState<ISelectedDate>(initialSelectedDate);
-        const [fromDate, setFromDate] = useState<ISelectedDate>(initialSelectedDate);
+        const [endDate, setEndDate] = useState<ISelectedDate>(initialSelectedDate);
+        const [startDate, setStartDate] = useState<ISelectedDate>(initialSelectedDate);
 
-        const CalendarWithMainLogic = useMemo(
-            () => withMainLogic(Calendar, shownDate, setShownDate),
-            [shownDate]
-        );
+        const CalendarWithMainLogic = useMemo(() => withMainLogic(Calendar), [shownDate]);
         const CalendarWithRangePicker = withRangePickerLogic(
             CalendarWithMainLogic,
-            toDate,
-            fromDate,
-            setToDate,
-            setFromDate,
+            endDate,
+            startDate,
+            setEndDate,
+            setStartDate,
             shownDate,
             setShownDate,
             onChange
@@ -48,14 +47,16 @@ export const RangePicker = memo<IProps>(
 
         return (
             <ErrorBoundary>
-                <CalendarWithRangePicker
-                    startDay={startDay}
-                    maxDate={maxDate}
-                    minDate={minDate}
-                    color={color}
-                    highlightHolidays={highlightHolidays}
-                    highlightWeekends={highlightWeekends}
-                />
+                <ThemeProvider theme={theme}>
+                    <CalendarWithRangePicker
+                        startDayOfWeek={startDayOfWeek}
+                        maxDate={maxDate}
+                        minDate={minDate}
+                        color={color}
+                        highlightHolidays={highlightHolidays}
+                        highlightWeekends={highlightWeekends}
+                    />
+                </ThemeProvider>
             </ErrorBoundary>
         );
     }

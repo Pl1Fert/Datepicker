@@ -8,8 +8,9 @@ import {
 } from "react";
 
 import { Picker } from "@/components";
+import { isValidDate } from "@/helpers";
 import { IDate, ISelectedDate } from "@/interfaces";
-import { formatDateToString, formatStringToDate, isValidDate } from "@/utils";
+import { formatDateToString, formatStringToDate } from "@/utils/formatters";
 
 export function withPickerLogic<T>(
     Component: ComponentType<T>,
@@ -84,6 +85,7 @@ export function withPickerLogic<T>(
                 handleDayClick={handleDayClick}
                 renderPicker={renderPicker}
                 shownDate={shownDate}
+                setShownDate={setShownDate}
             />
         );
     };

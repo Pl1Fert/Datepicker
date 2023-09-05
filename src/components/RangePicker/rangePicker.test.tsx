@@ -2,11 +2,11 @@ import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { IDate } from "@/interfaces";
-import { formatDateToString } from "@/utils";
+import { formatDateToString } from "@/utils/formatters";
 
 import "@testing-library/jest-dom";
 
-import { RangePicker } from "../src/components/RangePicker";
+import { RangePicker } from ".";
 
 describe("RangePicker tests", () => {
     beforeEach(() => {
@@ -24,13 +24,13 @@ describe("RangePicker tests", () => {
 
     test("should handle range days clicks", async () => {
         const date = new Date();
-        const fromDate: IDate = {
+        const startDate: IDate = {
             year: date.getFullYear(),
             month: date.getMonth(),
             day: 5,
         };
 
-        const toDate: IDate = {
+        const endDate: IDate = {
             year: date.getFullYear(),
             month: date.getMonth(),
             day: 15,
@@ -40,15 +40,15 @@ describe("RangePicker tests", () => {
         expect(screen.getByText("15")).toBeInTheDocument();
 
         await userEvent.click(screen.getByText("5"));
-        expect(screen.getByTestId("fromPicker")).toHaveValue(formatDateToString(fromDate));
+        expect(screen.getByTestId("fromPicker")).toHaveValue(formatDateToString(startDate));
 
         await userEvent.click(screen.getByText("15"));
-        expect(screen.getByTestId("toPicker")).toHaveValue(formatDateToString(toDate));
+        expect(screen.getByTestId("toPicker")).toHaveValue(formatDateToString(endDate));
     });
 
     test("should handle correct range days clicks", async () => {
         const date = new Date();
-        const fromDate: IDate = {
+        const startDate: IDate = {
             year: date.getFullYear(),
             month: date.getMonth(),
             day: 15,
@@ -58,7 +58,7 @@ describe("RangePicker tests", () => {
         expect(screen.getByText("15")).toBeInTheDocument();
 
         await userEvent.click(screen.getByText("15"));
-        expect(screen.getByTestId("fromPicker")).toHaveValue(formatDateToString(fromDate));
+        expect(screen.getByTestId("fromPicker")).toHaveValue(formatDateToString(startDate));
 
         await userEvent.click(screen.getByText("5"));
         expect(screen.getByTestId("toPicker")).toHaveValue("");

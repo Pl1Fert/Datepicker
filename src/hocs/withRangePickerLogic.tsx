@@ -8,95 +8,95 @@ import {
 } from "react";
 
 import { Picker } from "@/components";
+import { isSecondDateLessThanFirst, isValidDate } from "@/helpers";
 import { IDate, ISelectedDate } from "@/interfaces";
-import {
-    formatDateToString,
-    formatStringToDate,
-    isSecondDateLessThanFirst,
-    isValidDate,
-} from "@/utils";
+import { formatDateToString, formatStringToDate } from "@/utils/formatters";
 
 export function withRangePickerLogic<T>(
     Component: ComponentType<T>,
-    toDate: ISelectedDate,
-    fromDate: ISelectedDate,
-    setToDate: Dispatch<SetStateAction<ISelectedDate>>,
-    setFromDate: Dispatch<SetStateAction<ISelectedDate>>,
+    endDate: ISelectedDate,
+    startDate: ISelectedDate,
+    setEndDate: Dispatch<SetStateAction<ISelectedDate>>,
+    setStartDate: Dispatch<SetStateAction<ISelectedDate>>,
     shownDate: IDate,
     setShownDate: Dispatch<SetStateAction<IDate>>,
     onChange?: (value: string) => void
 ) {
-    return (hocProps: Omit<T, "setShownDate" | "handleDayClick" | "toDate" | "fromDate">) => {
-        const [fromDateString, setFromDateString] = useState<string>(formatDateToString(fromDate));
-        const [toDateString, setToDateString] = useState<string>(formatDateToString(toDate));
+    return (
+        hocProps: Omit<T, "setShownDate" | "shownDate" | "handleDayClick" | "endDate" | "startDate">
+    ) => {
+        const [startDateString, setStartDateString] = useState<string>(
+            formatDateToString(startDate)
+        );
+        const [endDateString, setEndDateString] = useState<string>(formatDateToString(endDate));
 
         if (onChange) {
-            if (!fromDateString || !toDateString) {
+            if (!startDateString || !endDateString) {
                 onChange("");
             }
-            onChange(`${fromDateString}/${toDateString}`);
+            onChange(`${startDateString}/${endDateString}`);
         }
 
         const handleFromInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
 
-            setFromDateString(target.value);
+            setStartDateString(target.value);
         };
 
         const handleToInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
 
-            setToDateString(target.value);
+            setEndDateString(target.value);
         };
 
-        const handleEnterFromDate = (e: KeyboardEvent<HTMLInputElement>): void => {
+        const handleEnterStartDate = (e: KeyboardEvent<HTMLInputElement>): void => {
             if (e.key !== "Enter") {
                 return;
             }
-            if (!fromDateString.trim()) {
+            if (!startDateString.trim()) {
                 return;
             }
 
-            const date: IDate | undefined = formatStringToDate(fromDateString);
+            const date: IDate | undefined = formatStringToDate(startDateString);
 
             if (!isValidDate(date) || !date) {
                 return;
             }
 
             setShownDate(date);
-            setFromDate(date);
+            setStartDate(date);
         };
 
-        const handleEnterToDate = (e: KeyboardEvent<HTMLInputElement>): void => {
+        const handleEnterEndDate = (e: KeyboardEvent<HTMLInputElement>): void => {
             if (e.key !== "Enter") {
                 return;
             }
-            if (!toDateString.trim()) {
+            if (!endDateString.trim()) {
                 return;
             }
 
-            const date: IDate | undefined = formatStringToDate(toDateString);
+            const date: IDate | undefined = formatStringToDate(endDateString);
 
             if (!isValidDate(date) || !date) {
                 return;
             }
 
-            setToDate(date as ISelectedDate);
+            setEndDate(date as ISelectedDate);
         };
 
-        const handleClearFromDate = (): void => {
-            setFromDate({ year: undefined, month: undefined, day: undefined });
+        const handleClearStartDate = (): void => {
+            setStartDate({ year: undefined, month: undefined, day: undefined });
         };
 
-        const handleClearToDate = (): void => {
-            setToDate({ year: undefined, month: undefined, day: undefined });
+        const handleClearEndDate = (): void => {
+            setEndDate({ year: undefined, month: undefined, day: undefined });
         };
 
         const handleDayClick = (e: SyntheticEvent): void => {
             const target = e.target as HTMLElement;
 
-            if (!fromDate.year && !fromDate.month && !fromDate.day) {
-                setFromDate({
+            if (!startDate.year && !startDate.month && !startDate.day) {
+                setStartDate({
                     year: shownDate.year,
                     month: shownDate.month,
                     day: parseInt(target.innerText, 10),
@@ -104,10 +104,10 @@ export function withRangePickerLogic<T>(
             } else if (
                 isSecondDateLessThanFirst(
                     { ...shownDate, day: parseInt(target.innerText, 10) },
-                    fromDate as IDate
+                    startDate as IDate
                 )
             ) {
-                setToDate({
+                setEndDate({
                     year: shownDate.year,
                     month: shownDate.month,
                     day: parseInt(target.innerText, 10),
@@ -118,17 +118,17 @@ export function withRangePickerLogic<T>(
         const renderPickers = (): JSX.Element => (
             <>
                 <Picker
-                    value={fromDateString}
+                    value={startDateString}
                     onChange={handleFromInputChange}
-                    onKeyDown={handleEnterFromDate}
-                    onClick={handleClearFromDate}
+                    onKeyDown={handleEnterStartDate}
+                    onClick={handleClearStartDate}
                     testId="fromPicker"
                 />
                 <Picker
-                    value={toDateString}
+                    value={endDateString}
                     onChange={handleToInputChange}
-                    onKeyDown={handleEnterToDate}
-                    onClick={handleClearToDate}
+                    onKeyDown={handleEnterEndDate}
+                    onClick={handleClearEndDate}
                     testId="toPicker"
                 />
             </>
@@ -140,8 +140,9 @@ export function withRangePickerLogic<T>(
                 handleDayClick={handleDayClick}
                 renderPickers={renderPickers}
                 shownDate={shownDate}
-                toDate={toDate}
-                fromDate={fromDate}
+                setShownDate={setShownDate}
+                endDate={endDate}
+                startDate={startDate}
             />
         );
     };

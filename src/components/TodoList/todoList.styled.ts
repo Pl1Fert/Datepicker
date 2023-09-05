@@ -12,3 +12,21 @@ export const StyledList = styled.ul`
 
     list-style: none;
 `;
+
+export const StyledListItem = styled.li`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: ${({ theme: colors }) => colors.black};
+`;
+
+export const StyledButton = styled.button`
+    margin-top: 4px;
+    border: none;
+
+    outline: none;
+    background: transparent;
+
+    cursor: pointer;
+`;

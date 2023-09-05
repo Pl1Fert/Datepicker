@@ -1,16 +1,16 @@
+import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { DatePicker } from "@/components";
-import { StartDay } from "@/constants";
-import { useState } from "react";
+import { RangePicker } from "@/components";
+import { StartDayOfWeek } from "@/constants";
 
-const meta: Meta<typeof DatePicker> = {
-    title: "DatePicker",
-    component: DatePicker,
+const meta: Meta<typeof RangePicker> = {
+    title: "RangePicker",
+    component: RangePicker,
     tags: ["autodocs"],
     argTypes: {
-        startDay: {
-            options: [StartDay.Monday, StartDay.Sunday],
+        startDayOfWeek: {
+            options: [StartDayOfWeek.Monday, StartDayOfWeek.Sunday],
             control: { type: "radio" },
         },
         color: { control: "color" },
@@ -26,7 +26,7 @@ const meta: Meta<typeof DatePicker> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof DatePicker>;
+type Story = StoryObj<typeof RangePicker>;
 
 const WithOnChangeProp = () => {
     const [_, setValue] = useState<string>("");
@@ -35,12 +35,12 @@ const WithOnChangeProp = () => {
         setValue(value);
     };
 
-    return <DatePicker onChange={onChange} />;
+    return <RangePicker onChange={onChange} />;
 };
 
 export const Default: Story = {
     args: {
-        startDay: StartDay.Monday,
+        startDayOfWeek: StartDayOfWeek.Monday,
         maxDate: {
             year: 2024,
             month: 1,
@@ -54,6 +54,6 @@ export const Default: Story = {
     },
 };
 
-export const withOnChange: Story = {
+export const WithOnChange: Story = {
     render: () => <WithOnChangeProp />,
 };

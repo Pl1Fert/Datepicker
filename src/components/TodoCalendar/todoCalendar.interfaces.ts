@@ -1,8 +1,8 @@
-import { StartDay } from "@/constants";
+import { StartDayOfWeek } from "@/constants";
 import { IMaxMinDate } from "@/interfaces";
 
 export interface IProps {
-    startDay?: StartDay;
+    startDayOfWeek?: StartDayOfWeek;
     maxDate?: IMaxMinDate;
     minDate?: IMaxMinDate;
     color?: string;

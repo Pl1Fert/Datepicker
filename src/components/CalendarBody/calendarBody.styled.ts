@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { defaultColors } from "@/styles/colors";
-
 export const SevenColGrid = styled.div`
     margin-bottom: 10px;
 
@@ -32,24 +30,45 @@ export const StyledDayCell = styled.p<{
     text-align: center;
 
     border-radius: ${({ $inRange }) => ($inRange ? "0px" : "8px")};
-    background-color: ${({ $today, $color, $inRange }) =>
-        $today ? $color || defaultColors.blue : $inRange ? defaultColors.lightBlue : "transparent"};
-    border-color: ${({ $selected, $color }) =>
-        $selected ? $color || defaultColors.blue : "transparent"};
-    color: ${({ $today, $highlightWeekends, $highlightHolidays }) =>
-        $today
-            ? defaultColors.white
-            : $highlightWeekends
-            ? defaultColors.red
-            : $highlightHolidays
-            ? defaultColors.green
-            : defaultColors.black};
+
+    background-color: ${({ $today, $color, $inRange, theme: { colors } }) => {
+        switch (true) {
+            case $today:
+                return $color || colors.blue;
+            case $inRange:
+                return colors.lightBlue;
+            default:
+                return "transparent";
+        }
+    }};
+
+    border-color: ${({ $selected, $color, theme: { colors } }) => {
+        switch (true) {
+            case $selected:
+                return $color || colors.blue;
+            default:
+                return "transparent";
+        }
+    }};
+
+    color: ${({ $today, $highlightWeekends, $highlightHolidays, theme: { colors } }) => {
+        switch (true) {
+            case $today:
+                return colors.white;
+            case $highlightWeekends:
+                return colors.red;
+            case $highlightHolidays:
+                return colors.green;
+            default:
+                return colors.black;
+        }
+    }};
 
     cursor: pointer;
 
     transition: all 0.2s linear;
 
     &:hover {
-        background-color: ${({ color }) => color || defaultColors.lightBlue};
+        background-color: ${({ color, theme: { colors } }) => color || colors.lightBlue};
     }
 `;
