@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 export const StyledInput = styled.input`
     width: 100%;
     padding: 2px 25px;

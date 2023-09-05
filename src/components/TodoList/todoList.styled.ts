@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { defaultColors } from "@/styles/theme";
-
 export const StyledList = styled.ul`
     display: flex;
     flex-direction: column;
@@ -20,7 +18,7 @@ export const StyledListItem = styled.li`
     align-items: center;
     justify-content: space-between;
 
-    color: ${defaultColors.black};
+    color: ${({ theme: colors }) => colors.black};
 `;
 
 export const StyledButton = styled.button`

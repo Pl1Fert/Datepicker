@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { defaultColors } from "@/styles/theme";
-
 export const Row = styled.div`
     margin-bottom: 15px;
 
@@ -23,12 +21,12 @@ export const Title = styled.h4`
 
     width: 18px;
     padding: 2px;
-    border: 1px solid black;
+    border: 1px solid ${({ theme: colors }) => colors.black};
 
     font-weight: 500;
     font-size: 10px;
 
-    color: ${defaultColors.black};
+    color: ${({ theme: colors }) => colors.black};
     border-radius: 4px;
 
     cursor: pointer;
@@ -54,7 +52,7 @@ export const StyledSelect = styled.select`
 
     outline: none;
     background: transparent;
-    color: ${defaultColors.black};
+    color: ${({ theme: colors }) => colors.black};
 
     cursor: pointer;
     appearance: none;

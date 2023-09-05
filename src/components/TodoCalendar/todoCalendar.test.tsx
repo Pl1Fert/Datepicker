@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import "@testing-library/jest-dom";
 
-import { TodoCalendar } from "../src/components/TodoCalendar";
+import { TodoCalendar } from ".";
 
 describe("TodoCalendar tests", () => {
     beforeEach(() => {

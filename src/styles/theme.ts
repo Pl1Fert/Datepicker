@@ -1,23 +1,21 @@
 const blue = "#2f80ed";
 const lightBlue = "#2f80ed23";
 const green = "#26c94a";
-const black = "#000";
-const white = "#fff";
+const black = "#000000";
+const white = "#ffffff";
 const red = "#fc0313";
+const grey = "#808080";
 
-interface ITheme {
-    colors: {
-        [key: string]: string;
-    };
-}
-
-export const theme: ITheme = {
+export const theme = {
     colors: {
         blue,
         lightBlue,
         green,
-        black: "#000",
+        black,
         white,
         red,
+    },
+    shadow: {
+        grey,
     },
 };

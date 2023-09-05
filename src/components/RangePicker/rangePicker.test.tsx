@@ -2,11 +2,11 @@ import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { IDate } from "@/interfaces";
-import { formatDateToString } from "@/utils";
+import { formatDateToString } from "@/utils/formatters";
 
 import "@testing-library/jest-dom";
 
-import { RangePicker } from "../src/components/RangePicker";
+import { RangePicker } from ".";
 
 describe("RangePicker tests", () => {
     beforeEach(() => {

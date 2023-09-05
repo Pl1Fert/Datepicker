@@ -1,9 +1,11 @@
 import { memo, useMemo, useState } from "react";
+import { ThemeProvider } from "styled-components";
 
 import { Calendar, ErrorBoundary } from "@/components";
 import { CURRENT_DATE, StartDayOfWeek } from "@/constants";
 import { withMainLogic, withRangePickerLogic } from "@/hocs";
 import { IDate, ISelectedDate } from "@/interfaces";
+import { theme } from "@/styles/theme";
 
 import { IProps } from "./rangePicker.interfaces";
 
@@ -45,14 +47,16 @@ export const RangePicker = memo<IProps>(
 
         return (
             <ErrorBoundary>
-                <CalendarWithRangePicker
-                    startDayOfWeek={startDayOfWeek}
-                    maxDate={maxDate}
-                    minDate={minDate}
-                    color={color}
-                    highlightHolidays={highlightHolidays}
-                    highlightWeekends={highlightWeekends}
-                />
+                <ThemeProvider theme={theme}>
+                    <CalendarWithRangePicker
+                        startDayOfWeek={startDayOfWeek}
+                        maxDate={maxDate}
+                        minDate={minDate}
+                        color={color}
+                        highlightHolidays={highlightHolidays}
+                        highlightWeekends={highlightWeekends}
+                    />
+                </ThemeProvider>
             </ErrorBoundary>
         );
     }

@@ -1,5 +1,5 @@
+import { http } from "@/helpers";
 import { HttpResponse, IHolidaysReponse } from "@/interfaces";
-import { http } from "@/utils";
 
 export const getHolidays = async () => {
     let response: HttpResponse<IHolidaysReponse>;

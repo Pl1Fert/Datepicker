@@ -11,6 +11,7 @@ import {
 import { TodoListContainer } from "@/components";
 import { IDate, ISelectedDate, ITodo } from "@/interfaces";
 import { formatDateToString } from "@/utils/formatters";
+import { getTodosFromLocalStorage } from "@/utils/getters";
 
 export function withTodoListLogic<T>(
     Component: ComponentType<T>,
@@ -25,14 +26,7 @@ export function withTodoListLogic<T>(
             "selectedDate" | "setSelectedDate" | "shownDate" | "handleDayClick" | "setShownDate"
         >
     ) => {
-        const [todoList, setTodoList] = useState<ITodo[]>(() => {
-            const value = localStorage.getItem("todoList");
-            if (typeof value === "string") {
-                const storedTodoList: ITodo[] = JSON.parse(value) as ITodo[];
-                return storedTodoList;
-            }
-            return [];
-        });
+        const [todoList, setTodoList] = useState<ITodo[]>(() => getTodosFromLocalStorage());
         const [todo, setTodo] = useState<string>("");
 
         useEffect(() => {
