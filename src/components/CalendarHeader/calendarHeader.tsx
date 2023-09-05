@@ -35,7 +35,7 @@ export const CalendarHeader = memo<IProps>(
                     onClick={handlePrevMonthClick}
                     disabled={areEqualDates({ year, month }, minDate)}
                     data-testid="prevButton">
-                    <PrevIcon />
+                    <PrevIcon size="16" />
                 </StyledButton>
                 <StyledSelectContainer>
                     <StyledSelect
@@ -66,7 +66,7 @@ export const CalendarHeader = memo<IProps>(
                     onClick={handleNextMonthClick}
                     disabled={areEqualDates({ year, month }, maxDate)}
                     data-testid="nextButton">
-                    <NextIcon />
+                    <NextIcon size="16" />
                 </StyledButton>
             </Row>
         </StyledHeader>

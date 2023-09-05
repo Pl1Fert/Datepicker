@@ -16,7 +16,7 @@ export const TodoList = memo<IProps>(({ todoList, formattedSelectedDate, handleD
                         type="button"
                         onClick={() => handleDeleteTodo(id)}
                         data-testid="deleteTodoButton">
-                        <ClearIcon />
+                        <ClearIcon size="16" />
                     </StyledButton>
                 </StyledListItem>
             ))}
