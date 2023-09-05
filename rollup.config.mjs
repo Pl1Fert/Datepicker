@@ -4,6 +4,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
 import dts from "rollup-plugin-dts";
+import styles from "rollup-plugin-styles";
+import commonjs from "rollup-plugin-commonjs";
 
 export default [
     {
@@ -25,6 +27,7 @@ export default [
             babel({
                 exclude: "node_modules/**",
                 presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
+                plugins: ["styled-components"],
             }),
             resolve({
                 jsnext: true,
@@ -32,8 +35,9 @@ export default [
                 browser: true,
             }),
             terser(),
+            commonjs(),
+            styles(),
         ],
-        external: ["styled-components"],
     },
     {
         input: "./src/index.ts",
