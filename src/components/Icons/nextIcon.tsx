@@ -1,5 +1,14 @@
-export const NextIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { memo } from "react";
+
+import { IProps } from "./icons.interfaces";
+
+export const NextIcon = memo<IProps>(({ size }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
             d="M4.27337 4L3.33337 4.94L6.38671 8L3.33337 11.06L4.27337 12L8.27337 8L4.27337 4Z"
             fill="black"
@@ -9,4 +18,4 @@ export const NextIcon = () => (
             fill="black"
         />
     </svg>
-);
+));

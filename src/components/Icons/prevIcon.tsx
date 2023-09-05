@@ -1,5 +1,14 @@
-export const PrevIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { memo } from "react";
+
+import { IProps } from "./icons.interfaces";
+
+export const PrevIcon = memo<IProps>(({ size }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
             d="M11.7266 12L12.6666 11.06L9.61329 8L12.6666 4.94L11.7266 4L7.72663 8L11.7266 12Z"
             fill="black"
@@ -9,4 +18,4 @@ export const PrevIcon = () => (
             fill="black"
         />
     </svg>
-);
+));

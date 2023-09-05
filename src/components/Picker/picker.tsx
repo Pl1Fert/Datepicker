@@ -8,7 +8,7 @@ import { CalendarIconWrapper, ClearIconWrapper, Container, StyledInput } from ".
 export const Picker = memo<IProps>(({ value, onChange, onKeyDown, onClick, testId }) => (
     <Container>
         <CalendarIconWrapper>
-            <CalendarIcon />
+            <CalendarIcon size="16" />
         </CalendarIconWrapper>
         <StyledInput
             type="text"
@@ -20,7 +20,7 @@ export const Picker = memo<IProps>(({ value, onChange, onKeyDown, onClick, testI
             data-testid={testId}
         />
         <ClearIconWrapper onClick={onClick} data-testid="clearButton">
-            <ClearIcon />
+            <ClearIcon size="16" />
         </ClearIconWrapper>
     </Container>
 ));
