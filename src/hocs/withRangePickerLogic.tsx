@@ -8,9 +8,13 @@ import {
 } from "react";
 
 import { Picker } from "@/components";
-import { isSecondDateLessThanFirst, isValidDate } from "@/helpers";
+import {
+    formatDateToString,
+    formatStringToDate,
+    isSecondDateLessThanFirst,
+    isValidDate,
+} from "@/helpers";
 import { IDate, ISelectedDate } from "@/interfaces";
-import { formatDateToString, formatStringToDate } from "@/utils/formatters";
 
 export function withRangePickerLogic<T>(
     Component: ComponentType<T>,

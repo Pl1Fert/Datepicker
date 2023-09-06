@@ -9,9 +9,8 @@ import {
 } from "react";
 
 import { TodoListContainer } from "@/components";
+import { formatDateToString, getTodosFromLocalStorage } from "@/helpers";
 import { IDate, ISelectedDate, ITodo } from "@/interfaces";
-import { formatDateToString } from "@/utils/formatters";
-import { getTodosFromLocalStorage } from "@/utils/getters";
 
 export function withTodoListLogic<T>(
     Component: ComponentType<T>,

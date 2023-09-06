@@ -8,9 +8,8 @@ import {
 } from "react";
 
 import { Picker } from "@/components";
-import { isValidDate } from "@/helpers";
+import { formatDateToString, formatStringToDate, isValidDate } from "@/helpers";
 import { IDate, ISelectedDate } from "@/interfaces";
-import { formatDateToString, formatStringToDate } from "@/utils/formatters";
 
 export function withPickerLogic<T>(
     Component: ComponentType<T>,
