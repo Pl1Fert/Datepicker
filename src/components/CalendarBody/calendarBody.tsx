@@ -1,8 +1,14 @@
 import { memo } from "react";
 
 import { CURRENT_DATE } from "@/constants";
-import { areEqualDates, isDateInRange, isHoliday, isWeekend } from "@/helpers";
-import { getMonthData, getWeekDaysNames } from "@/utils/getters";
+import {
+    areEqualDates,
+    getMonthData,
+    getWeekDaysNames,
+    isDateInRange,
+    isHoliday,
+    isWeekend,
+} from "@/helpers";
 
 import { IProps } from "./calendarBody.interfaces";
 import { SevenColGrid, StyledDayCell, StyledDayName } from "./calendarBody.styled";

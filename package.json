@@ -1,6 +1,6 @@
 {
     "name": "datepicker-pl1fert",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "main": "dist/index.js",
     "repository": {
         "type": "git",
@@ -82,8 +82,7 @@
         "lint": "eslint \"src/**/*.{ts,tsx}\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
         "prepare": "husky install",
-        "test": "jest",
-        "chromatic": "npx chromatic --project-token=chpt_38ce3f4fc7add1b"
+        "test": "jest"
     },
     "resolutions": {
         "jackspeak": "2.1.1",

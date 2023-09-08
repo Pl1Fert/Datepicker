@@ -2,8 +2,8 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { MONTH_NAMES } from "@/constants";
+import { formatDateToString } from "@/helpers";
 import { IDate } from "@/interfaces";
-import { formatDateToString } from "@/utils/formatters";
 
 import "@testing-library/jest-dom";
 

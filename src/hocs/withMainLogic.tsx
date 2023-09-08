@@ -1,8 +1,8 @@
 import { ComponentType, useEffect, useState } from "react";
 
 import { getHolidays } from "@/api";
+import { formatHolidays } from "@/helpers";
 import { IHolidaysDates } from "@/interfaces";
-import { formatHolidays } from "@/utils/formatters";
 
 export function withMainLogic<T>(Component: ComponentType<T>) {
     return (hocProps: Omit<T, "holidays">) => {
